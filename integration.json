@@ -5,7 +5,7 @@
   "releaseEligible": true,
   "maintainer": "jannikco",
   "license": "MIT",
-  "sourceRevision": "05f46fb9841fb3887a5e62072667eb2c143a69aadbcd4d6a01af8ab1606d6e4b",
+  "sourceRevision": "25127979f9b085e7ece03ee71add0a38638b1658a2db3a113444d3b3e9f48157",
   "evidence": [
     "Provider source and authentication facts",
     "Scoped connector operation evidence",

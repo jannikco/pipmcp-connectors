@@ -9,7 +9,7 @@
     "guidePages": 7,
     "connectorImplementations": 91,
     "setupPages": 459,
-    "publishedRepositories": 204,
+    "publishedRepositories": 205,
     "liveOperations": 0,
     "localLiveOperations": 0,
     "managedLiveOperations": 0,
@@ -72,11 +72,11 @@
         {
           "id": "github-mcp",
           "url": "https://github.com/jannikco/github-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "5bb62e3ac85b203074aac1f994758f4505f6db7d",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/github-mcp",
@@ -112,7 +112,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -213,11 +213,11 @@
         {
           "id": "hubspot-mcp",
           "url": "https://github.com/jannikco/hubspot-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "552d9a06358620b3fa82d74a228c7ebb0cb5f17a",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/hubspot-mcp",
@@ -253,7 +253,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -333,11 +333,11 @@
         {
           "id": "google-drive-mcp",
           "url": "https://github.com/jannikco/google-drive-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "a2e7ebcd683495e713ad346ecdc65dd6729d65e4",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/google-drive-mcp",
@@ -373,7 +373,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -762,11 +762,11 @@
         {
           "id": "linkedin-mcp",
           "url": "https://github.com/jannikco/linkedin-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "8a8c3f0374725371aa733985d6f7e0c0f701d3ba",
-          "executionAuthority": null
+          "executionAuthority": "leadadapter-remote-mcp"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/linkedin-mcp",
@@ -784,7 +784,7 @@
       "detailPath": "integrations/linkedin/",
       "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/integrations/linkedin/",
       "providerLiveVerification": "not-established",
-      "localInstallationAvailable": false,
+      "localInstallationAvailable": true,
       "managedAvailability": {
         "status": "listed"
       },
@@ -1070,11 +1070,11 @@
         {
           "id": "slack-mcp",
           "url": "https://github.com/jannikco/slack-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "c0336769b37a30cd18de7c46b1a85912b5b8fe6a",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/slack-mcp",
@@ -1110,7 +1110,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -1190,11 +1190,11 @@
         {
           "id": "airtable-mcp",
           "url": "https://github.com/jannikco/airtable-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "8eef365e7cb2066a0eb8d2021eb034e4581033c5",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/airtable-mcp",
@@ -1230,7 +1230,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -1310,11 +1310,11 @@
         {
           "id": "notion-mcp",
           "url": "https://github.com/jannikco/notion-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "2645175fe4c3520d720162f850675b182a29fe9a",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/notion-mcp",
@@ -1350,7 +1350,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -1430,11 +1430,11 @@
         {
           "id": "pipedrive-mcp",
           "url": "https://github.com/jannikco/pipedrive-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "f3222ee6a80d50c38945a79f5d41846f70f7de10",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/pipedrive-mcp",
@@ -1470,7 +1470,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -1550,11 +1550,11 @@
         {
           "id": "stripe-mcp",
           "url": "https://github.com/jannikco/stripe-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "163360803479a0ab8b9875cbcf052bd859d0123f",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/stripe-mcp",
@@ -1590,7 +1590,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -1670,11 +1670,11 @@
         {
           "id": "google-calendar-mcp",
           "url": "https://github.com/jannikco/google-calendar-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "83c324f3065e170f96e2b70bf4458a64b53ff4f7",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/google-calendar-mcp",
@@ -1710,7 +1710,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -3350,11 +3350,11 @@
         {
           "id": "attio-mcp",
           "url": "https://github.com/jannikco/attio-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "e991731b48a42672f22fc5edb039ca729ba0a8ff",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/attio-mcp",
@@ -3390,7 +3390,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -5393,11 +5393,11 @@
         {
           "id": "e-conomic-mcp",
           "url": "https://github.com/jannikco/e-conomic-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "fd3edc52d7d58ad2e26faafdf4d6f8912e997159",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/e-conomic-mcp",
@@ -5433,7 +5433,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -6599,11 +6599,11 @@
         {
           "id": "google-sheets-mcp",
           "url": "https://github.com/jannikco/google-sheets-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "34d20f0e3df5630afd96284e2c65bb6cee74ec1e",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/google-sheets-mcp",
@@ -6639,7 +6639,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -9853,11 +9853,11 @@
         {
           "id": "shopify-mcp",
           "url": "https://github.com/jannikco/shopify-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "70576c2eccb4b3adf3daed6aee215bd535289632",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/shopify-mcp",
@@ -9893,7 +9893,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -11055,11 +11055,11 @@
         {
           "id": "xero-mcp",
           "url": "https://github.com/jannikco/xero-mcp",
-          "kind": "published-project",
+          "kind": "provider-connector",
           "selectedOpenApiAvailable": false,
-          "status": "passed",
+          "status": "updated",
           "headSha": "2d5af4385995e93d4ceafa201edbcec01f63d0be",
-          "executionAuthority": null
+          "executionAuthority": "pipmcp-gateway"
         }
       ],
       "repositoryUrl": "https://github.com/jannikco/xero-mcp",
@@ -11095,7 +11095,7 @@
       "operationIds": [],
       "providerOperationInventory": "authenticated-dynamic",
       "clientLevel": "Tested",
-      "gatewayClientAvailable": false,
+      "gatewayClientAvailable": true,
       "clientVersion": "1.1.0",
       "hostedExecution": {
         "apiOrigin": "https://pipmcp.com/api/v1",
@@ -43818,66 +43818,66 @@
       "id": "linkedin-api",
       "name": "LinkedIn API quickstart",
       "description": "LinkedIn API for AI agents and developers: people search, profiles, post engagement, leads and reviewed CRM workflows with one LeadAdapter API key.",
-      "kind": "published-project",
+      "kind": "leadadapter-recipe",
       "compilerAvailable": false,
       "product": "leadadapter",
       "repositoryUrl": "https://github.com/jannikco/linkedin-api",
       "appSlug": "",
       "executionAuthority": "leadadapter-api",
-      "publishedExecutionAuthority": "",
+      "publishedExecutionAuthority": "leadadapter-api",
       "gatewayClientAvailable": false
     },
     {
       "id": "linkedin-search-api",
       "name": "LinkedIn people and post search",
       "description": "Find relevant LinkedIn people and posts through LeadAdapter. API examples, coding-agent skills and a reviewed research-to-CRM workflow.",
-      "kind": "published-project",
+      "kind": "leadadapter-recipe",
       "compilerAvailable": false,
       "product": "leadadapter",
       "repositoryUrl": "https://github.com/jannikco/linkedin-search-api",
       "appSlug": "",
       "executionAuthority": "leadadapter-api",
-      "publishedExecutionAuthority": "",
+      "publishedExecutionAuthority": "leadadapter-api",
       "gatewayClientAvailable": false
     },
     {
       "id": "linkedin-post-engagers",
       "name": "LinkedIn post engagers",
       "description": "Turn LinkedIn post engagement into a source-backed prospect shortlist. LeadAdapter API client, AI-agent skills and reviewed CRM handoff.",
-      "kind": "published-project",
+      "kind": "leadadapter-recipe",
       "compilerAvailable": false,
       "product": "leadadapter",
       "repositoryUrl": "https://github.com/jannikco/linkedin-post-engagers",
       "appSlug": "",
       "executionAuthority": "leadadapter-api",
-      "publishedExecutionAuthority": "",
+      "publishedExecutionAuthority": "leadadapter-api",
       "gatewayClientAvailable": false
     },
     {
       "id": "linkedin-mcp",
       "name": "LeadAdapter LinkedIn MCP server",
       "description": "LinkedIn MCP for Claude Code, Codex and AI agents. Discover your authorized LeadAdapter tools and connect with one LeadAdapter API key.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "leadadapter",
       "repositoryUrl": "https://github.com/jannikco/linkedin-mcp",
       "appSlug": "linkedin",
       "executionAuthority": "leadadapter-remote-mcp",
-      "publishedExecutionAuthority": "",
+      "publishedExecutionAuthority": "leadadapter-remote-mcp",
       "gatewayClientAvailable": false
     },
     {
       "id": "openapi-to-mcp",
       "name": "OpenAPI to MCP import starter",
       "description": "Import openapi APIs into private PipMCP with one API key, reviewed uploads and agent instructions.",
-      "kind": "published-project",
+      "kind": "import-example",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/openapi-to-mcp",
       "appSlug": "",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "swagger-to-mcp",
@@ -43917,6 +43917,19 @@
       "executionAuthority": "pipmcp-gateway",
       "publishedExecutionAuthority": "pipmcp-gateway",
       "gatewayClientAvailable": true
+    },
+    {
+      "id": "linkedin-profile-api",
+      "name": "LinkedIn profile enrichment",
+      "description": "Enrich selected LinkedIn profiles through LeadAdapter. Typed clients, AI-agent instructions and source-preserving research workflows.",
+      "kind": "leadadapter-recipe",
+      "compilerAvailable": false,
+      "product": "leadadapter",
+      "repositoryUrl": "https://github.com/jannikco/linkedin-profile-api",
+      "appSlug": "",
+      "executionAuthority": "leadadapter-api",
+      "publishedExecutionAuthority": "leadadapter-api",
+      "gatewayClientAvailable": false
     },
     {
       "id": "linkedin-company-api",
@@ -44013,40 +44026,40 @@
       "id": "github-mcp",
       "name": "GitHub MCP server",
       "description": "Use GitHub with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/github-mcp",
       "appSlug": "github",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "hubspot-mcp",
       "name": "HubSpot MCP server",
       "description": "Use HubSpot with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/hubspot-mcp",
       "appSlug": "hubspot",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "pipedrive-mcp",
       "name": "Pipedrive MCP server",
       "description": "Use Pipedrive with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/pipedrive-mcp",
       "appSlug": "pipedrive",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "trello-mcp",
@@ -44065,66 +44078,66 @@
       "id": "notion-mcp",
       "name": "Notion MCP server",
       "description": "Use Notion with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/notion-mcp",
       "appSlug": "notion",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "stripe-mcp",
       "name": "Stripe MCP server",
       "description": "Use Stripe with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/stripe-mcp",
       "appSlug": "stripe",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "e-conomic-mcp",
       "name": "e-conomic MCP server",
       "description": "Use e-conomic with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/e-conomic-mcp",
       "appSlug": "e-conomic",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "google-drive-mcp",
       "name": "Google Drive MCP server",
       "description": "Use Google Drive with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/google-drive-mcp",
       "appSlug": "google-drive",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "slack-mcp",
       "name": "Slack MCP server",
       "description": "Use Slack with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/slack-mcp",
       "appSlug": "slack",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "asana-mcp",
@@ -44156,14 +44169,14 @@
       "id": "airtable-mcp",
       "name": "Airtable MCP server",
       "description": "Use Airtable with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/airtable-mcp",
       "appSlug": "airtable",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "linear-mcp",
@@ -44195,14 +44208,14 @@
       "id": "xero-mcp",
       "name": "Xero MCP server",
       "description": "Use Xero with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/xero-mcp",
       "appSlug": "xero",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "dinero-mcp",
@@ -44312,14 +44325,14 @@
       "id": "attio-mcp",
       "name": "Attio MCP server",
       "description": "Use Attio with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/attio-mcp",
       "appSlug": "attio",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "close-mcp",
@@ -44377,14 +44390,14 @@
       "id": "google-calendar-mcp",
       "name": "Google Calendar MCP server",
       "description": "Use Google Calendar with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/google-calendar-mcp",
       "appSlug": "google-calendar",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "microsoft-outlook-mcp",
@@ -45781,14 +45794,14 @@
       "id": "shopify-mcp",
       "name": "Shopify MCP server",
       "description": "Use Shopify with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/shopify-mcp",
       "appSlug": "shopify",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "freshdesk-mcp",
@@ -46353,14 +46366,14 @@
       "id": "google-sheets-mcp",
       "name": "Google Sheets MCP server",
       "description": "Use Google Sheets with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
-      "kind": "published-project",
+      "kind": "provider-connector",
       "compilerAvailable": false,
       "product": "pipmcp",
       "repositoryUrl": "https://github.com/jannikco/google-sheets-mcp",
       "appSlug": "google-sheets",
       "executionAuthority": "pipmcp-gateway",
-      "publishedExecutionAuthority": "",
-      "gatewayClientAvailable": false
+      "publishedExecutionAuthority": "pipmcp-gateway",
+      "gatewayClientAvailable": true
     },
     {
       "id": "google-tasks-mcp",
@@ -46593,6 +46606,10 @@
         "identity"
       ],
       "repositories": [
+        {
+          "id": "linkedin-profile-api",
+          "url": "https://github.com/jannikco/linkedin-profile-api"
+        },
         {
           "id": "linkedin-typescript-sdk",
           "url": "https://github.com/jannikco/linkedin-typescript-sdk"
@@ -50573,5 +50590,5 @@
       "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
     }
   ],
-  "sourceRevision": "05f46fb9841fb3887a5e62072667eb2c143a69aadbcd4d6a01af8ab1606d6e4b"
+  "sourceRevision": "25127979f9b085e7ece03ee71add0a38638b1658a2db3a113444d3b3e9f48157"
 }
