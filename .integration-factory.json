@@ -20,7 +20,7 @@
   "kind": "catalog-hub",
   "product": "pipmcp",
   "title": "PipMCP connector and API integration directory",
-  "description": "Source-backed provider pages with setup and connector types, local and managed operation evidence, and published project links.",
+  "description": "Discover MCP clients, API SDKs and AI-agent workflows. Find useful GitHub projects, browse integration guides and activate with PipMCP or LeadAdapter.",
   "operationIds": [],
   "attributionSlug": "github-pipmcp-connectors",
   "factory": "leadadapter-pipmcp",

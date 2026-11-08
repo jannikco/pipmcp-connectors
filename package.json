@@ -1,7 +1,7 @@
 {
   "name": "pipmcp-connectors",
   "version": "0.3.0",
-  "description": "Source-backed provider pages with setup and connector types, local and managed operation evidence, and published project links.",
+  "description": "Discover MCP clients, API SDKs and AI-agent workflows. Find useful GitHub projects, browse integration guides and activate with PipMCP or LeadAdapter.",
   "type": "module",
   "license": "MIT",
   "engines": {
