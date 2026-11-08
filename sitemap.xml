@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://jannikco.github.io/pipmcp-connectors/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/research-shortlist/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/agent-lead-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/icp-people-search/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/profile-completeness/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/engagement-qualified-leads/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/stalled-deal-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/pipedrive-contact-completeness/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/account-owner-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/notion-page-freshness/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/lead-data-quality/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/budget-exception-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/slack-channel-membership-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/stale-document-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/meeting-conflict-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/repository-triage/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/shopify-draft-catalog-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/stripe-customer-contact-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/economic-customer-email-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/xero-contact-tax-review/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/start/private-api-import-preview/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/tasks/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/solutions/leadadapter/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/tasks/research-to-crm/</loc></url>

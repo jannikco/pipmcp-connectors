@@ -4,7 +4,7 @@
 
 [Explore the directory →](https://jannikco.github.io/pipmcp-connectors/) · [Choose a task](https://jannikco.github.io/pipmcp-connectors/tasks/) · [LinkedIn with LeadAdapter](https://jannikco.github.io/pipmcp-connectors/solutions/leadadapter/) · [Import your own API](https://pipmcp.com/github/start?integration=openapi-to-mcp&utm_source=github&utm_campaign=github-pipmcp-connectors)
 
-205 public GitHub projects · 550 integration guides · 90 hosted PipMCP connector clients · 102 task guides.
+204 public GitHub projects · 550 integration guides · 90 hosted PipMCP connector clients · 102 task guides.
 
 ## Start with what you want to build
 

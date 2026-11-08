@@ -144,10 +144,6 @@
       ],
       "repositories": [
         {
-          "id": "linkedin-profile-api",
-          "url": "https://github.com/jannikco/linkedin-profile-api"
-        },
-        {
           "id": "linkedin-typescript-sdk",
           "url": "https://github.com/jannikco/linkedin-typescript-sdk"
         },
