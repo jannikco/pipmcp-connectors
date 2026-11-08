@@ -15,7 +15,7 @@ function card(row){
  const header=element('div',undefined,'card-header');header.append(element('span',row.name.slice(0,2).toUpperCase(),'provider-icon'),element('span',row.artifactType,'badge '+(row.artifactType==='Connector'?'connector':'')));
  const heading=element('div');heading.append(element('div',row.category.replaceAll('-',' '),'category'));
  const h=element('h2');const a=element('a',row.name);a.href=row.detailPath;h.append(a);heading.append(h);
- const evidence=element('div',undefined,'evidence-line');evidence.append(element('span',(row.product==='leadadapter'?'Historical local: ':'Local: ')+row.localLevel+(row.localLiveCount?' · '+row.localLiveCount+' Live ops':'')),element('span','Managed: '+row.managedLevel+(row.managedLiveCount?' · '+row.managedLiveCount+' Live ops':'')));
+ const evidence=element('div',undefined,'evidence-line');evidence.append(element('span',(row.executionMode==='hosted-gateway'?'Client: ':row.product==='leadadapter'?'Historical local: ':'Local: ')+row.localLevel+(row.localLiveCount?' · '+row.localLiveCount+' Live ops':'')),element('span','Managed: '+row.managedLevel+(row.managedLiveCount?' · '+row.managedLiveCount+' Live ops':'')));
  const footer=element('div',undefined,'card-footer');footer.append(element('span',row.authentication.type.replaceAll('_',' ')),element('span',row.repositories.length?'Public project ↗':'Setup guide →'));
  article.append(header,heading,element('p',row.description),evidence,footer);return article;
 }

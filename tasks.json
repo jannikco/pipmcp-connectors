@@ -462,10 +462,11 @@
     },
     {
       "id": "openapi-to-mcp",
-      "title": "Turn an OpenAPI API into callable MCP tools",
-      "description": "Compile a reviewed API definition locally, inspect generated tools and authentication, then use a callable MCP runtime. Compilation does not connect a provider account or establish live execution.",
+      "title": "Import an OpenAPI API into private PipMCP",
+      "description": "Preview and explicitly upload a reviewed API definition with one PipMCP key. Review and publish selected tools in the workspace, configure a connection and use explicit custom-api integration selection.",
       "product": "pipmcp",
-      "kind": "api-compiler",
+      "kind": "authenticated-api-import",
+      "executionAuthority": "pipmcp-gateway",
       "keywords": [
         "openapi",
         "rest",
@@ -483,10 +484,12 @@
       ],
       "operations": [],
       "access": [
-        "Your API definition",
-        "Provider credentials only when executing its protected API"
+        "PIPMCP_API_KEY with integrations:read/integrations:write for import",
+        "Same key with connectors:read/connectors:call for published tools",
+        "Explicit published PIPMCP_INTEGRATION_ID for custom-api"
       ],
-      "approval": "Generated writes require runtime opt-in and explicit per-call approval.",
+      "approval": "Input upload requires --execute --confirm-import. Import, workspace publication, provider connection and hosted action confirmation are separate steps.",
+      "node": "npm start\nnpm run doctor",
       "detailPath": "tasks/openapi-to-mcp/",
       "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/openapi-to-mcp/",
       "evidence": {
@@ -498,10 +501,11 @@
     },
     {
       "id": "swagger-to-mcp",
-      "title": "Turn a Swagger2 API into callable MCP tools",
-      "description": "Compile a reviewed API definition locally, inspect generated tools and authentication, then use a callable MCP runtime. Compilation does not connect a provider account or establish live execution.",
+      "title": "Import a Swagger2 API into private PipMCP",
+      "description": "Preview and explicitly upload a reviewed API definition with one PipMCP key. Review and publish selected tools in the workspace, configure a connection and use explicit custom-api integration selection.",
       "product": "pipmcp",
-      "kind": "api-compiler",
+      "kind": "authenticated-api-import",
+      "executionAuthority": "pipmcp-gateway",
       "keywords": [
         "swagger",
         "rest",
@@ -520,10 +524,12 @@
       ],
       "operations": [],
       "access": [
-        "Your API definition",
-        "Provider credentials only when executing its protected API"
+        "PIPMCP_API_KEY with integrations:read/integrations:write for import",
+        "Same key with connectors:read/connectors:call for published tools",
+        "Explicit published PIPMCP_INTEGRATION_ID for custom-api"
       ],
-      "approval": "Generated writes require runtime opt-in and explicit per-call approval.",
+      "approval": "Input upload requires --execute --confirm-import. Import, workspace publication, provider connection and hosted action confirmation are separate steps.",
+      "node": "npm start\nnpm run doctor",
       "detailPath": "tasks/swagger-to-mcp/",
       "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/swagger-to-mcp/",
       "evidence": {
@@ -535,10 +541,11 @@
     },
     {
       "id": "postman-to-mcp",
-      "title": "Turn a reviewed Postman collection into MCP tools",
-      "description": "Compile a reviewed API definition locally, inspect generated tools and authentication, then use a callable MCP runtime. Compilation does not connect a provider account or establish live execution.",
+      "title": "Import a reviewed Postman collection into MCP tools",
+      "description": "Preview and explicitly upload a reviewed API definition with one PipMCP key. Review and publish selected tools in the workspace, configure a connection and use explicit custom-api integration selection.",
       "product": "pipmcp",
-      "kind": "api-compiler",
+      "kind": "authenticated-api-import",
+      "executionAuthority": "pipmcp-gateway",
       "keywords": [
         "postman",
         "collection",
@@ -555,10 +562,12 @@
       ],
       "operations": [],
       "access": [
-        "Your API definition",
-        "Provider credentials only when executing its protected API"
+        "PIPMCP_API_KEY with integrations:read/integrations:write for import",
+        "Same key with connectors:read/connectors:call for published tools",
+        "Explicit published PIPMCP_INTEGRATION_ID for custom-api"
       ],
-      "approval": "Generated writes require runtime opt-in and explicit per-call approval.",
+      "approval": "Input upload requires --execute --confirm-import. Import, workspace publication, provider connection and hosted action confirmation are separate steps.",
+      "node": "npm start\nnpm run doctor",
       "detailPath": "tasks/postman-to-mcp/",
       "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/postman-to-mcp/",
       "evidence": {
@@ -570,10 +579,11 @@
     },
     {
       "id": "graphql-to-mcp",
-      "title": "Turn a GraphQL schema into callable MCP tools",
-      "description": "Compile a reviewed API definition locally, inspect generated tools and authentication, then use a callable MCP runtime. Compilation does not connect a provider account or establish live execution.",
+      "title": "Import a GraphQL schema into private PipMCP",
+      "description": "Preview and explicitly upload a reviewed API definition with one PipMCP key. Review and publish selected tools in the workspace, configure a connection and use explicit custom-api integration selection.",
       "product": "pipmcp",
-      "kind": "api-compiler",
+      "kind": "authenticated-api-import",
+      "executionAuthority": "pipmcp-gateway",
       "keywords": [
         "graphql",
         "introspection",
@@ -591,10 +601,12 @@
       ],
       "operations": [],
       "access": [
-        "Your API definition",
-        "Provider credentials only when executing its protected API"
+        "PIPMCP_API_KEY with integrations:read/integrations:write for import",
+        "Same key with connectors:read/connectors:call for published tools",
+        "Explicit published PIPMCP_INTEGRATION_ID for custom-api"
       ],
-      "approval": "Generated writes require runtime opt-in and explicit per-call approval.",
+      "approval": "Input upload requires --execute --confirm-import. Import, workspace publication, provider connection and hosted action confirmation are separate steps.",
+      "node": "npm start\nnpm run doctor",
       "detailPath": "tasks/graphql-to-mcp/",
       "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/graphql-to-mcp/",
       "evidence": {
@@ -616,8 +628,9 @@
         "GitHub",
         "workflow",
         "developer",
-        "get_authenticated_user",
-        "list_repository_issues"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -625,13 +638,12 @@
           "url": "https://github.com/jannikco/github-mcp"
         }
       ],
-      "tools": [
-        "get_authenticated_user",
-        "list_repository_issues"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/github-workflow/",
@@ -655,9 +667,9 @@
         "HubSpot",
         "workflow",
         "crm",
-        "hubspot_list_objects",
-        "hubspot_get_object",
-        "hubspot_create_object"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -665,14 +677,12 @@
           "url": "https://github.com/jannikco/hubspot-mcp"
         }
       ],
-      "tools": [
-        "hubspot_list_objects",
-        "hubspot_get_object",
-        "hubspot_create_object"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/hubspot-workflow/",
@@ -696,8 +706,9 @@
         "Google Drive",
         "workflow",
         "documents",
-        "list_files",
-        "get_file_metadata"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -705,13 +716,12 @@
           "url": "https://github.com/jannikco/google-drive-mcp"
         }
       ],
-      "tools": [
-        "list_files",
-        "get_file_metadata"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/google-drive-workflow/",
@@ -735,8 +745,9 @@
         "Linear",
         "workflow",
         "project-management",
-        "get_viewer",
-        "list_issues"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -744,13 +755,12 @@
           "url": "https://github.com/jannikco/linear-mcp"
         }
       ],
-      "tools": [
-        "get_viewer",
-        "list_issues"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/linear-workflow/",
@@ -774,8 +784,9 @@
         "Slack",
         "workflow",
         "communication",
-        "test_auth",
-        "list_conversations"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -783,13 +794,12 @@
           "url": "https://github.com/jannikco/slack-mcp"
         }
       ],
-      "tools": [
-        "test_auth",
-        "list_conversations"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/slack-workflow/",
@@ -813,8 +823,9 @@
         "Airtable",
         "workflow",
         "productivity",
-        "list_bases",
-        "list_records"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -822,13 +833,12 @@
           "url": "https://github.com/jannikco/airtable-mcp"
         }
       ],
-      "tools": [
-        "list_bases",
-        "list_records"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/airtable-workflow/",
@@ -852,8 +862,9 @@
         "Notion",
         "workflow",
         "productivity",
-        "get_bot_user",
-        "search_pages"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -861,13 +872,12 @@
           "url": "https://github.com/jannikco/notion-mcp"
         }
       ],
-      "tools": [
-        "get_bot_user",
-        "search_pages"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/notion-workflow/",
@@ -891,9 +901,9 @@
         "Pipedrive",
         "workflow",
         "crm",
-        "pipedrive_list_persons",
-        "pipedrive_get_person",
-        "pipedrive_create_person"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -901,14 +911,12 @@
           "url": "https://github.com/jannikco/pipedrive-mcp"
         }
       ],
-      "tools": [
-        "pipedrive_list_persons",
-        "pipedrive_get_person",
-        "pipedrive_create_person"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/pipedrive-workflow/",
@@ -932,9 +940,9 @@
         "Stripe",
         "workflow",
         "payments",
-        "stripe_list_customers",
-        "stripe_get_customer",
-        "stripe_create_customer"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -942,14 +950,12 @@
           "url": "https://github.com/jannikco/stripe-mcp"
         }
       ],
-      "tools": [
-        "stripe_list_customers",
-        "stripe_get_customer",
-        "stripe_create_customer"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/stripe-workflow/",
@@ -973,8 +979,9 @@
         "Google Calendar",
         "workflow",
         "scheduling",
-        "list_calendars",
-        "list_events"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -982,13 +989,12 @@
           "url": "https://github.com/jannikco/google-calendar-mcp"
         }
       ],
-      "tools": [
-        "list_calendars",
-        "list_events"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/google-calendar-workflow/",
@@ -1012,8 +1018,9 @@
         "GitLab",
         "workflow",
         "developer",
-        "get_current_user",
-        "list_project_issues"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1021,13 +1028,12 @@
           "url": "https://github.com/jannikco/gitlab-mcp"
         }
       ],
-      "tools": [
-        "get_current_user",
-        "list_project_issues"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/gitlab-workflow/",
@@ -1051,8 +1057,9 @@
         "46elks",
         "workflow",
         "communication",
-        "elks46_get_account",
-        "elks46_send_sms"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1060,13 +1067,12 @@
           "url": "https://github.com/jannikco/46elks-mcp"
         }
       ],
-      "tools": [
-        "elks46_get_account",
-        "elks46_send_sms"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/46elks-workflow/",
@@ -1081,7 +1087,7 @@
     {
       "id": "8x8-workflow",
       "title": "8x8-workflow",
-      "description": "Inspect messaging account balance/status and explicitly approve one SMS in the correct account region.",
+      "description": "Connect 8x8 in PipMCP, discover authorized tools and review the returned execution receipts.",
       "product": "pipmcp",
       "providerId": "8x8",
       "kind": "provider-workflow-definition",
@@ -1090,9 +1096,9 @@
         "8x8",
         "workflow",
         "communication",
-        "eightx8_get_balance",
-        "eightx8_get_sms",
-        "eightx8_send_sms"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1100,14 +1106,12 @@
           "url": "https://github.com/jannikco/8x8-mcp"
         }
       ],
-      "tools": [
-        "eightx8_get_balance",
-        "eightx8_get_sms",
-        "eightx8_send_sms"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/8x8-workflow/",
@@ -1131,9 +1135,9 @@
         "Abyssale",
         "workflow",
         "marketing",
-        "abyssale_list_designs",
-        "abyssale_get_generation",
-        "abyssale_generate_formats"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1141,14 +1145,12 @@
           "url": "https://github.com/jannikco/abyssale-mcp"
         }
       ],
-      "tools": [
-        "abyssale_list_designs",
-        "abyssale_get_generation",
-        "abyssale_generate_formats"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/abyssale-workflow/",
@@ -1172,8 +1174,9 @@
         "Accredible Certificates",
         "workflow",
         "documents",
-        "accredible_get_credential",
-        "accredible_create_credential"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1181,13 +1184,12 @@
           "url": "https://github.com/jannikco/accredible-mcp"
         }
       ],
-      "tools": [
-        "accredible_get_credential",
-        "accredible_create_credential"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/accredible-workflow/",
@@ -1211,8 +1213,9 @@
         "ActiveCampaign",
         "workflow",
         "marketing",
-        "activecampaign_list_contacts",
-        "activecampaign_create_contact"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1220,13 +1223,12 @@
           "url": "https://github.com/jannikco/activecampaign-mcp"
         }
       ],
-      "tools": [
-        "activecampaign_list_contacts",
-        "activecampaign_create_contact"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/activecampaign-workflow/",
@@ -1250,9 +1252,9 @@
         "Adobe Acrobat Sign",
         "workflow",
         "documents",
-        "adobe_sign_list_agreements",
-        "adobe_sign_get_agreement",
-        "adobe_sign_create_draft"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1260,14 +1262,12 @@
           "url": "https://github.com/jannikco/adobe-acrobat-sign-mcp"
         }
       ],
-      "tools": [
-        "adobe_sign_list_agreements",
-        "adobe_sign_get_agreement",
-        "adobe_sign_create_draft"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/adobe-acrobat-sign-workflow/",
@@ -1291,9 +1291,9 @@
         "Agorapulse",
         "workflow",
         "marketing",
-        "agorapulse_list_organizations",
-        "agorapulse_list_profiles",
-        "agorapulse_create_calendar_note"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1301,14 +1301,12 @@
           "url": "https://github.com/jannikco/agorapulse-mcp"
         }
       ],
-      "tools": [
-        "agorapulse_list_organizations",
-        "agorapulse_list_profiles",
-        "agorapulse_create_calendar_note"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/agorapulse-workflow/",
@@ -1332,8 +1330,9 @@
         "Algolia",
         "workflow",
         "developer",
-        "list_indices",
-        "search_index"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1341,13 +1340,12 @@
           "url": "https://github.com/jannikco/algolia-mcp"
         }
       ],
-      "tools": [
-        "list_indices",
-        "search_index"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/algolia-workflow/",
@@ -1371,8 +1369,9 @@
         "Apify",
         "workflow",
         "data",
-        "get_current_user",
-        "list_actors"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1380,13 +1379,12 @@
           "url": "https://github.com/jannikco/apify-mcp"
         }
       ],
-      "tools": [
-        "get_current_user",
-        "list_actors"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/apify-workflow/",
@@ -1410,9 +1408,9 @@
         "Arize AX",
         "workflow",
         "developer",
-        "arize_list_datasets",
-        "arize_get_dataset",
-        "arize_create_dataset"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1420,14 +1418,12 @@
           "url": "https://github.com/jannikco/arize-ax-mcp"
         }
       ],
-      "tools": [
-        "arize_list_datasets",
-        "arize_get_dataset",
-        "arize_create_dataset"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/arize-ax-workflow/",
@@ -1451,8 +1447,9 @@
         "Asana",
         "workflow",
         "project-management",
-        "get_current_user",
-        "list_workspaces"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1460,13 +1457,12 @@
           "url": "https://github.com/jannikco/asana-mcp"
         }
       ],
-      "tools": [
-        "get_current_user",
-        "list_workspaces"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/asana-workflow/",
@@ -1490,9 +1486,9 @@
         "AssemblyAI",
         "workflow",
         "data",
-        "assemblyai_list_transcripts",
-        "assemblyai_get_transcript",
-        "assemblyai_submit_transcript"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1500,14 +1496,12 @@
           "url": "https://github.com/jannikco/assemblyai-mcp"
         }
       ],
-      "tools": [
-        "assemblyai_list_transcripts",
-        "assemblyai_get_transcript",
-        "assemblyai_submit_transcript"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/assemblyai-workflow/",
@@ -1531,9 +1525,9 @@
         "Attio",
         "workflow",
         "crm",
-        "attio_query_records",
-        "attio_get_record",
-        "attio_create_record"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1541,14 +1535,12 @@
           "url": "https://github.com/jannikco/attio-mcp"
         }
       ],
-      "tools": [
-        "attio_query_records",
-        "attio_get_record",
-        "attio_create_record"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/attio-workflow/",
@@ -1572,9 +1564,9 @@
         "Azure DevOps",
         "workflow",
         "developer",
-        "list_projects",
-        "list_builds",
-        "run_pipeline"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1582,14 +1574,12 @@
           "url": "https://github.com/jannikco/azure-devops-mcp"
         }
       ],
-      "tools": [
-        "list_projects",
-        "list_builds",
-        "run_pipeline"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/azure-devops-workflow/",
@@ -1613,9 +1603,9 @@
         "Better Stack Uptime",
         "workflow",
         "developer",
-        "list_monitors",
-        "get_monitor",
-        "create_status_monitor"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1623,14 +1613,12 @@
           "url": "https://github.com/jannikco/better-stack-mcp"
         }
       ],
-      "tools": [
-        "list_monitors",
-        "get_monitor",
-        "create_status_monitor"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/better-stack-workflow/",
@@ -1654,9 +1642,9 @@
         "Bitbucket",
         "workflow",
         "developer",
-        "list_pull_requests",
-        "get_pull_request",
-        "create_pull_request"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1664,14 +1652,12 @@
           "url": "https://github.com/jannikco/bitbucket-mcp"
         }
       ],
-      "tools": [
-        "list_pull_requests",
-        "get_pull_request",
-        "create_pull_request"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/bitbucket-workflow/",
@@ -1695,8 +1681,9 @@
         "Brevo",
         "workflow",
         "email",
-        "brevo_list_contacts",
-        "brevo_create_contact"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1704,13 +1691,12 @@
           "url": "https://github.com/jannikco/brevo-mcp"
         }
       ],
-      "tools": [
-        "brevo_list_contacts",
-        "brevo_create_contact"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/brevo-workflow/",
@@ -1734,10 +1720,9 @@
         "Browserbase",
         "workflow",
         "developer",
-        "list_sessions",
-        "create_session",
-        "release_session",
-        "get_session"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1745,15 +1730,12 @@
           "url": "https://github.com/jannikco/browserbase-mcp"
         }
       ],
-      "tools": [
-        "list_sessions",
-        "create_session",
-        "release_session",
-        "get_session"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/browserbase-workflow/",
@@ -1777,9 +1759,9 @@
         "Buildkite",
         "workflow",
         "developer",
-        "list_builds",
-        "get_build",
-        "create_build"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1787,14 +1769,12 @@
           "url": "https://github.com/jannikco/buildkite-mcp"
         }
       ],
-      "tools": [
-        "list_builds",
-        "get_build",
-        "create_build"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/buildkite-workflow/",
@@ -1818,9 +1798,9 @@
         "Calendly",
         "workflow",
         "scheduling",
-        "calendly_get_current_user",
-        "calendly_list_event_types",
-        "calendly_create_single_use_link"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1828,14 +1808,12 @@
           "url": "https://github.com/jannikco/calendly-mcp"
         }
       ],
-      "tools": [
-        "calendly_get_current_user",
-        "calendly_list_event_types",
-        "calendly_create_single_use_link"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/calendly-workflow/",
@@ -1859,9 +1837,9 @@
         "CircleCI",
         "workflow",
         "developer",
-        "list_project_pipelines",
-        "list_pipeline_workflows",
-        "cancel_workflow"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1869,14 +1847,12 @@
           "url": "https://github.com/jannikco/circleci-mcp"
         }
       ],
-      "tools": [
-        "list_project_pipelines",
-        "list_pipeline_workflows",
-        "cancel_workflow"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/circleci-workflow/",
@@ -1900,8 +1876,9 @@
         "ClickUp",
         "workflow",
         "project-management",
-        "get_current_user",
-        "list_workspaces"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1909,13 +1886,12 @@
           "url": "https://github.com/jannikco/clickup-mcp"
         }
       ],
-      "tools": [
-        "get_current_user",
-        "list_workspaces"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/clickup-workflow/",
@@ -1939,8 +1915,9 @@
         "Cloudflare",
         "workflow",
         "developer",
-        "verify_token",
-        "list_zones"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1948,13 +1925,12 @@
           "url": "https://github.com/jannikco/cloudflare-mcp"
         }
       ],
-      "tools": [
-        "verify_token",
-        "list_zones"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/cloudflare-workflow/",
@@ -1978,8 +1954,9 @@
         "Customer.io",
         "workflow",
         "marketing",
-        "customerio_list_segments",
-        "customerio_create_manual_segment"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -1987,13 +1964,12 @@
           "url": "https://github.com/jannikco/customer-io-mcp"
         }
       ],
-      "tools": [
-        "customerio_list_segments",
-        "customerio_create_manual_segment"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/customer-io-workflow/",
@@ -2017,9 +1993,9 @@
         "Datadog",
         "workflow",
         "developer",
-        "validate_api_key",
-        "list_monitors",
-        "create_event"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2027,14 +2003,12 @@
           "url": "https://github.com/jannikco/datadog-mcp"
         }
       ],
-      "tools": [
-        "validate_api_key",
-        "list_monitors",
-        "create_event"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/datadog-workflow/",
@@ -2058,9 +2032,9 @@
         "Deepgram",
         "workflow",
         "developer",
-        "list_projects",
-        "list_project_requests",
-        "transcribe_audio_url"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2068,14 +2042,12 @@
           "url": "https://github.com/jannikco/deepgram-mcp"
         }
       ],
-      "tools": [
-        "list_projects",
-        "list_project_requests",
-        "transcribe_audio_url"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/deepgram-workflow/",
@@ -2099,9 +2071,9 @@
         "DigitalOcean",
         "workflow",
         "developer",
-        "list_projects",
-        "list_droplets",
-        "create_project"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2109,14 +2081,12 @@
           "url": "https://github.com/jannikco/digitalocean-mcp"
         }
       ],
-      "tools": [
-        "list_projects",
-        "list_droplets",
-        "create_project"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/digitalocean-workflow/",
@@ -2140,8 +2110,9 @@
         "Discord",
         "workflow",
         "communication",
-        "get_current_user",
-        "list_guild_channels"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2149,13 +2120,12 @@
           "url": "https://github.com/jannikco/discord-mcp"
         }
       ],
-      "tools": [
-        "get_current_user",
-        "list_guild_channels"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/discord-workflow/",
@@ -2179,9 +2149,9 @@
         "Dropbox",
         "workflow",
         "documents",
-        "get_current_account",
-        "list_folder",
-        "continue_folder_listing"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2189,14 +2159,12 @@
           "url": "https://github.com/jannikco/dropbox-mcp"
         }
       ],
-      "tools": [
-        "get_current_account",
-        "list_folder",
-        "continue_folder_listing"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/dropbox-workflow/",
@@ -2220,9 +2188,9 @@
         "e-conomic",
         "workflow",
         "accounting",
-        "economic_list_customers",
-        "economic_get_customer",
-        "economic_create_customer_contact"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2230,14 +2198,12 @@
           "url": "https://github.com/jannikco/e-conomic-mcp"
         }
       ],
-      "tools": [
-        "economic_list_customers",
-        "economic_get_customer",
-        "economic_create_customer_contact"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/e-conomic-workflow/",
@@ -2252,7 +2218,7 @@
     {
       "id": "elevenlabs-workflow",
       "title": "Choose voice and model",
-      "description": "Search voice metadata and inspect model language/capability metadata to prepare a compatible audio workflow. Audio generation remains in the provider SDK, not this JSON connector.",
+      "description": "Connect ElevenLabs in PipMCP, discover authorized tools and review the returned execution receipts.",
       "product": "pipmcp",
       "providerId": "elevenlabs",
       "kind": "provider-workflow-definition",
@@ -2261,8 +2227,9 @@
         "ElevenLabs",
         "workflow",
         "data",
-        "list_voices",
-        "list_models"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2270,13 +2237,12 @@
           "url": "https://github.com/jannikco/elevenlabs-mcp"
         }
       ],
-      "tools": [
-        "list_voices",
-        "list_models"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/elevenlabs-workflow/",
@@ -2300,8 +2266,9 @@
         "Exa",
         "workflow",
         "data",
-        "search_web",
-        "get_contents"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2309,13 +2276,12 @@
           "url": "https://github.com/jannikco/exa-mcp"
         }
       ],
-      "tools": [
-        "search_web",
-        "get_contents"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/exa-workflow/",
@@ -2339,8 +2305,9 @@
         "Firecrawl",
         "workflow",
         "data",
-        "map_site",
-        "scrape_page"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2348,13 +2315,12 @@
           "url": "https://github.com/jannikco/firecrawl-mcp"
         }
       ],
-      "tools": [
-        "map_site",
-        "scrape_page"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/firecrawl-workflow/",
@@ -2378,8 +2344,9 @@
         "Freshdesk",
         "workflow",
         "developer",
-        "freshdesk_list_tickets",
-        "freshdesk_create_ticket"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2387,13 +2354,12 @@
           "url": "https://github.com/jannikco/freshdesk-mcp"
         }
       ],
-      "tools": [
-        "freshdesk_list_tickets",
-        "freshdesk_create_ticket"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/freshdesk-workflow/",
@@ -2417,8 +2383,9 @@
         "Freshsales",
         "workflow",
         "developer",
-        "freshsales_get_contact",
-        "freshsales_create_contact"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2426,13 +2393,12 @@
           "url": "https://github.com/jannikco/freshsales-mcp"
         }
       ],
-      "tools": [
-        "freshsales_get_contact",
-        "freshsales_create_contact"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/freshsales-workflow/",
@@ -2456,8 +2422,9 @@
         "Front",
         "workflow",
         "support",
-        "front_list_contacts",
-        "front_create_contact"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2465,13 +2432,12 @@
           "url": "https://github.com/jannikco/front-mcp"
         }
       ],
-      "tools": [
-        "front_list_contacts",
-        "front_create_contact"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/front-workflow/",
@@ -2495,9 +2461,9 @@
         "GitHub Actions",
         "workflow",
         "developer",
-        "list_workflow_runs",
-        "list_workflows",
-        "dispatch_workflow"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2505,14 +2471,12 @@
           "url": "https://github.com/jannikco/github-actions-mcp"
         }
       ],
-      "tools": [
-        "list_workflow_runs",
-        "list_workflows",
-        "dispatch_workflow"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/github-actions-workflow/",
@@ -2536,9 +2500,9 @@
         "GitHub Projects",
         "workflow",
         "developer",
-        "list_organization_projects",
-        "list_project_items",
-        "add_project_item"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2546,14 +2510,12 @@
           "url": "https://github.com/jannikco/github-projects-mcp"
         }
       ],
-      "tools": [
-        "list_organization_projects",
-        "list_project_items",
-        "add_project_item"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/github-projects-workflow/",
@@ -2577,9 +2539,9 @@
         "Google Contacts",
         "workflow",
         "developer",
-        "list_connections",
-        "get_contact",
-        "create_contact"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2587,14 +2549,12 @@
           "url": "https://github.com/jannikco/google-contacts-mcp"
         }
       ],
-      "tools": [
-        "list_connections",
-        "get_contact",
-        "create_contact"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/google-contacts-workflow/",
@@ -2618,9 +2578,9 @@
         "Google Sheets",
         "workflow",
         "developer",
-        "get_spreadsheet",
-        "get_values",
-        "append_values"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2628,14 +2588,12 @@
           "url": "https://github.com/jannikco/google-sheets-mcp"
         }
       ],
-      "tools": [
-        "get_spreadsheet",
-        "get_values",
-        "append_values"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/google-sheets-workflow/",
@@ -2659,9 +2617,9 @@
         "Google Tasks",
         "workflow",
         "developer",
-        "list_task_lists",
-        "list_tasks",
-        "create_task"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2669,14 +2627,12 @@
           "url": "https://github.com/jannikco/google-tasks-mcp"
         }
       ],
-      "tools": [
-        "list_task_lists",
-        "list_tasks",
-        "create_task"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/google-tasks-workflow/",
@@ -2700,8 +2656,9 @@
         "Gorgias",
         "workflow",
         "support",
-        "gorgias_list_customers",
-        "gorgias_create_customer"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2709,13 +2666,12 @@
           "url": "https://github.com/jannikco/gorgias-mcp"
         }
       ],
-      "tools": [
-        "gorgias_list_customers",
-        "gorgias_create_customer"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/gorgias-workflow/",
@@ -2739,9 +2695,9 @@
         "Grafana",
         "workflow",
         "developer",
-        "search_dashboards",
-        "get_dashboard",
-        "create_annotation"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2749,14 +2705,12 @@
           "url": "https://github.com/jannikco/grafana-mcp"
         }
       ],
-      "tools": [
-        "search_dashboards",
-        "get_dashboard",
-        "create_annotation"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/grafana-workflow/",
@@ -2780,8 +2734,9 @@
         "Help Scout",
         "workflow",
         "developer",
-        "helpscout_list_conversations",
-        "helpscout_get_conversation"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2789,13 +2744,12 @@
           "url": "https://github.com/jannikco/help-scout-mcp"
         }
       ],
-      "tools": [
-        "helpscout_list_conversations",
-        "helpscout_get_conversation"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/help-scout-workflow/",
@@ -2819,8 +2773,9 @@
         "Hugging Face",
         "workflow",
         "developer",
-        "list_model_refs",
-        "list_model_commits"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2828,13 +2783,12 @@
           "url": "https://github.com/jannikco/hugging-face-mcp"
         }
       ],
-      "tools": [
-        "list_model_refs",
-        "list_model_commits"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/hugging-face-workflow/",
@@ -2858,8 +2812,9 @@
         "Instantly",
         "workflow",
         "email",
-        "instantly_list_campaigns",
-        "instantly_create_campaign"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2867,13 +2822,12 @@
           "url": "https://github.com/jannikco/instantly-mcp"
         }
       ],
-      "tools": [
-        "instantly_list_campaigns",
-        "instantly_create_campaign"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/instantly-workflow/",
@@ -2897,9 +2851,9 @@
         "Intercom",
         "workflow",
         "support",
-        "intercom_list_contacts",
-        "intercom_get_contact",
-        "intercom_create_contact"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2907,14 +2861,12 @@
           "url": "https://github.com/jannikco/intercom-mcp"
         }
       ],
-      "tools": [
-        "intercom_list_contacts",
-        "intercom_get_contact",
-        "intercom_create_contact"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/intercom-workflow/",
@@ -2938,8 +2890,9 @@
         "Jotform",
         "workflow",
         "forms",
-        "jotform_list_forms",
-        "jotform_list_submissions"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2947,13 +2900,12 @@
           "url": "https://github.com/jannikco/jotform-mcp"
         }
       ],
-      "tools": [
-        "jotform_list_forms",
-        "jotform_list_submissions"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/jotform-workflow/",
@@ -2977,8 +2929,9 @@
         "Kit (ConvertKit)",
         "workflow",
         "email",
-        "kit_list_subscribers",
-        "kit_create_inactive_subscriber"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -2986,13 +2939,12 @@
           "url": "https://github.com/jannikco/kit-mcp"
         }
       ],
-      "tools": [
-        "kit_list_subscribers",
-        "kit_create_inactive_subscriber"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/kit-workflow/",
@@ -3016,8 +2968,9 @@
         "lemlist",
         "workflow",
         "marketing",
-        "lemlist_list_campaigns",
-        "lemlist_create_campaign"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3025,13 +2978,12 @@
           "url": "https://github.com/jannikco/lemlist-mcp"
         }
       ],
-      "tools": [
-        "lemlist_list_campaigns",
-        "lemlist_create_campaign"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/lemlist-workflow/",
@@ -3055,9 +3007,9 @@
         "Mailchimp",
         "workflow",
         "developer",
-        "mailchimp_list_audiences",
-        "mailchimp_list_members",
-        "mailchimp_add_pending_member"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3065,14 +3017,12 @@
           "url": "https://github.com/jannikco/mailchimp-mcp"
         }
       ],
-      "tools": [
-        "mailchimp_list_audiences",
-        "mailchimp_list_members",
-        "mailchimp_add_pending_member"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/mailchimp-workflow/",
@@ -3096,8 +3046,9 @@
         "Mailgun",
         "workflow",
         "developer",
-        "mailgun_list_domains",
-        "mailgun_get_domain"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3105,13 +3056,12 @@
           "url": "https://github.com/jannikco/mailgun-mcp"
         }
       ],
-      "tools": [
-        "mailgun_list_domains",
-        "mailgun_get_domain"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/mailgun-workflow/",
@@ -3135,9 +3085,9 @@
         "Microsoft OneDrive",
         "workflow",
         "developer",
-        "list_root_children",
-        "get_item",
-        "create_root_folder"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3145,14 +3095,12 @@
           "url": "https://github.com/jannikco/microsoft-onedrive-mcp"
         }
       ],
-      "tools": [
-        "list_root_children",
-        "get_item",
-        "create_root_folder"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/microsoft-onedrive-workflow/",
@@ -3176,8 +3124,9 @@
         "Microsoft Outlook",
         "workflow",
         "email",
-        "list_messages",
-        "list_mail_folders"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3185,13 +3134,12 @@
           "url": "https://github.com/jannikco/microsoft-outlook-mcp"
         }
       ],
-      "tools": [
-        "list_messages",
-        "list_mail_folders"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/microsoft-outlook-workflow/",
@@ -3215,8 +3163,9 @@
         "Microsoft Teams",
         "workflow",
         "communication",
-        "list_joined_teams",
-        "list_team_channels"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3224,13 +3173,12 @@
           "url": "https://github.com/jannikco/microsoft-teams-mcp"
         }
       ],
-      "tools": [
-        "list_joined_teams",
-        "list_team_channels"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/microsoft-teams-workflow/",
@@ -3254,9 +3202,9 @@
         "Netlify",
         "workflow",
         "developer",
-        "list_sites",
-        "list_deploys",
-        "create_build"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3264,14 +3212,12 @@
           "url": "https://github.com/jannikco/netlify-mcp"
         }
       ],
-      "tools": [
-        "list_sites",
-        "list_deploys",
-        "create_build"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/netlify-workflow/",
@@ -3295,9 +3241,9 @@
         "New Relic",
         "workflow",
         "developer",
-        "get_current_user",
-        "list_accounts",
-        "add_entity_tags"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3305,14 +3251,12 @@
           "url": "https://github.com/jannikco/new-relic-mcp"
         }
       ],
-      "tools": [
-        "get_current_user",
-        "list_accounts",
-        "add_entity_tags"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/new-relic-workflow/",
@@ -3336,9 +3280,9 @@
         "PayPal",
         "workflow",
         "payments",
-        "paypal_list_invoices",
-        "paypal_get_invoice",
-        "paypal_create_draft_invoice"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3346,14 +3290,12 @@
           "url": "https://github.com/jannikco/paypal-mcp"
         }
       ],
-      "tools": [
-        "paypal_list_invoices",
-        "paypal_get_invoice",
-        "paypal_create_draft_invoice"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/paypal-workflow/",
@@ -3377,8 +3319,9 @@
         "Pinecone",
         "workflow",
         "data",
-        "list_indexes",
-        "describe_index"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3386,13 +3329,12 @@
           "url": "https://github.com/jannikco/pinecone-mcp"
         }
       ],
-      "tools": [
-        "list_indexes",
-        "describe_index"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/pinecone-workflow/",
@@ -3416,8 +3358,9 @@
         "Postmark",
         "workflow",
         "email",
-        "postmark_get_delivery_stats",
-        "postmark_send_email"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3425,13 +3368,12 @@
           "url": "https://github.com/jannikco/postmark-mcp"
         }
       ],
-      "tools": [
-        "postmark_get_delivery_stats",
-        "postmark_send_email"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/postmark-workflow/",
@@ -3455,9 +3397,9 @@
         "Qdrant Cloud",
         "workflow",
         "developer",
-        "list_collections",
-        "query_points",
-        "upsert_points"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3465,14 +3407,12 @@
           "url": "https://github.com/jannikco/qdrant-mcp"
         }
       ],
-      "tools": [
-        "list_collections",
-        "query_points",
-        "upsert_points"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/qdrant-workflow/",
@@ -3496,9 +3436,9 @@
         "Render",
         "workflow",
         "developer",
-        "list_services",
-        "list_deploys",
-        "create_deploy"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3506,14 +3446,12 @@
           "url": "https://github.com/jannikco/render-mcp"
         }
       ],
-      "tools": [
-        "list_services",
-        "list_deploys",
-        "create_deploy"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/render-workflow/",
@@ -3537,9 +3475,9 @@
         "Replicate",
         "workflow",
         "developer",
-        "get_model",
-        "create_prediction",
-        "get_prediction"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3547,14 +3485,12 @@
           "url": "https://github.com/jannikco/replicate-mcp"
         }
       ],
-      "tools": [
-        "get_model",
-        "create_prediction",
-        "get_prediction"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/replicate-workflow/",
@@ -3578,8 +3514,9 @@
         "Resend",
         "workflow",
         "email",
-        "resend_list_domains",
-        "resend_send_email"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3587,13 +3524,12 @@
           "url": "https://github.com/jannikco/resend-mcp"
         }
       ],
-      "tools": [
-        "resend_list_domains",
-        "resend_send_email"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/resend-workflow/",
@@ -3617,8 +3553,9 @@
         "SendGrid",
         "workflow",
         "developer",
-        "sendgrid_list_templates",
-        "sendgrid_create_template"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3626,13 +3563,12 @@
           "url": "https://github.com/jannikco/sendgrid-mcp"
         }
       ],
-      "tools": [
-        "sendgrid_list_templates",
-        "sendgrid_create_template"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/sendgrid-workflow/",
@@ -3656,8 +3592,9 @@
         "Sentry",
         "workflow",
         "developer",
-        "list_organizations",
-        "list_organization_projects"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3665,13 +3602,12 @@
           "url": "https://github.com/jannikco/sentry-mcp"
         }
       ],
-      "tools": [
-        "list_organizations",
-        "list_organization_projects"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/sentry-workflow/",
@@ -3695,8 +3631,9 @@
         "Shopify",
         "workflow",
         "developer",
-        "shopify_list_products",
-        "shopify_update_product_title"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3704,13 +3641,12 @@
           "url": "https://github.com/jannikco/shopify-mcp"
         }
       ],
-      "tools": [
-        "shopify_list_products",
-        "shopify_update_product_title"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/shopify-workflow/",
@@ -3734,8 +3670,9 @@
         "Smartlead",
         "workflow",
         "developer",
-        "smartlead_list_campaigns",
-        "smartlead_create_campaign"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3743,13 +3680,12 @@
           "url": "https://github.com/jannikco/smartlead-mcp"
         }
       ],
-      "tools": [
-        "smartlead_list_campaigns",
-        "smartlead_create_campaign"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/smartlead-workflow/",
@@ -3773,8 +3709,9 @@
         "Supabase",
         "workflow",
         "developer",
-        "list_projects",
-        "list_organizations"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3782,13 +3719,12 @@
           "url": "https://github.com/jannikco/supabase-mcp"
         }
       ],
-      "tools": [
-        "list_projects",
-        "list_organizations"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/supabase-workflow/",
@@ -3812,8 +3748,9 @@
         "Tavily",
         "workflow",
         "data",
-        "search_web",
-        "extract_urls"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3821,13 +3758,12 @@
           "url": "https://github.com/jannikco/tavily-mcp"
         }
       ],
-      "tools": [
-        "search_web",
-        "extract_urls"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/tavily-workflow/",
@@ -3851,9 +3787,9 @@
         "Todoist",
         "workflow",
         "productivity",
-        "list_projects",
-        "list_tasks",
-        "create_task"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3861,14 +3797,12 @@
           "url": "https://github.com/jannikco/todoist-mcp"
         }
       ],
-      "tools": [
-        "list_projects",
-        "list_tasks",
-        "create_task"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/todoist-workflow/",
@@ -3892,8 +3826,9 @@
         "Trello",
         "workflow",
         "project-management",
-        "get_current_member",
-        "list_member_boards"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3901,13 +3836,12 @@
           "url": "https://github.com/jannikco/trello-mcp"
         }
       ],
-      "tools": [
-        "get_current_member",
-        "list_member_boards"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/trello-workflow/",
@@ -3931,8 +3865,9 @@
         "Typeform",
         "workflow",
         "developer",
-        "typeform_list_forms",
-        "typeform_create_form"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3940,13 +3875,12 @@
           "url": "https://github.com/jannikco/typeform-mcp"
         }
       ],
-      "tools": [
-        "typeform_list_forms",
-        "typeform_create_form"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/typeform-workflow/",
@@ -3970,9 +3904,9 @@
         "UptimeRobot",
         "workflow",
         "developer",
-        "list_monitors",
-        "get_monitor",
-        "create_http_monitor"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -3980,14 +3914,12 @@
           "url": "https://github.com/jannikco/uptimerobot-mcp"
         }
       ],
-      "tools": [
-        "list_monitors",
-        "get_monitor",
-        "create_http_monitor"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/uptimerobot-workflow/",
@@ -4011,9 +3943,9 @@
         "Vercel",
         "workflow",
         "developer",
-        "list_projects",
-        "list_deployments",
-        "create_project"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -4021,14 +3953,12 @@
           "url": "https://github.com/jannikco/vercel-mcp"
         }
       ],
-      "tools": [
-        "list_projects",
-        "list_deployments",
-        "create_project"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/vercel-workflow/",
@@ -4052,9 +3982,9 @@
         "WooCommerce",
         "workflow",
         "ecommerce",
-        "woocommerce_list_customers",
-        "woocommerce_get_customer",
-        "woocommerce_create_customer"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -4062,14 +3992,12 @@
           "url": "https://github.com/jannikco/woocommerce-mcp"
         }
       ],
-      "tools": [
-        "woocommerce_list_customers",
-        "woocommerce_get_customer",
-        "woocommerce_create_customer"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/woocommerce-workflow/",
@@ -4093,9 +4021,9 @@
         "Xero",
         "workflow",
         "accounting",
-        "xero_list_contacts",
-        "xero_get_contact",
-        "xero_create_contacts"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -4103,14 +4031,12 @@
           "url": "https://github.com/jannikco/xero-mcp"
         }
       ],
-      "tools": [
-        "xero_list_contacts",
-        "xero_get_contact",
-        "xero_create_contacts"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/xero-workflow/",
@@ -4134,9 +4060,9 @@
         "Zendesk",
         "workflow",
         "support",
-        "zendesk_list_tickets",
-        "zendesk_get_ticket",
-        "zendesk_create_ticket"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -4144,14 +4070,12 @@
           "url": "https://github.com/jannikco/zendesk-mcp"
         }
       ],
-      "tools": [
-        "zendesk_list_tickets",
-        "zendesk_get_ticket",
-        "zendesk_create_ticket"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/zendesk-workflow/",
@@ -4175,8 +4099,9 @@
         "Zoho CRM",
         "workflow",
         "developer",
-        "zoho_list_leads",
-        "zoho_create_lead"
+        "discover-hosted-tools",
+        "review-the-intent",
+        "inspect-the-receipt"
       ],
       "repositories": [
         {
@@ -4184,13 +4109,12 @@
           "url": "https://github.com/jannikco/zoho-crm-mcp"
         }
       ],
-      "tools": [
-        "zoho_list_leads",
-        "zoho_create_lead"
-      ],
+      "tools": [],
       "operations": [],
+      "executionAuthority": "pipmcp-gateway",
       "access": [
-        "Provider account and permissions described on the integration page"
+        "PIPMCP_API_KEY with connector scopes",
+        "Authorized hosted provider connection; discover current schemas"
       ],
       "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
       "detailPath": "tasks/zoho-crm-workflow/",

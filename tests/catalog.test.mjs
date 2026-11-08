@@ -13,7 +13,7 @@ test('independent pages and canonical sitemap exist',async()=>{
  const sitemap=await readFile(new URL('sitemap.xml',root),'utf8');
  for(const entry of catalog.entries){await access(new URL(entry.detailPath+'index.html',root));assert.ok(sitemap.includes(entry.canonicalUrl));assert.ok(entry.providerDocs);assert.ok(entry.authentication.type);}
  assert.equal(catalog.counts.workflowPages,catalog.workflows.length);
- for(const workflow of catalog.workflows){assert.ok(sitemap.includes(workflow.canonicalUrl));await access(new URL(workflow.detailPath+'index.html',root));const provider=catalog.entries.find(e=>e.id===workflow.providerId);assert.ok(workflow.steps.every(name=>provider.tools.some(tool=>tool.name===name)));assert.equal(workflow.definitionLevel,'Documented');}
+ for(const workflow of catalog.workflows){assert.ok(sitemap.includes(workflow.canonicalUrl));await access(new URL(workflow.detailPath+'index.html',root));const provider=catalog.entries.find(e=>e.id===workflow.providerId);if(workflow.executionMode==='hosted-task-guide'){assert.equal(provider.tools.length,0);assert.equal(provider.executionAuthority,'pipmcp-gateway');}else assert.ok(workflow.steps.every(name=>provider.tools.some(tool=>tool.name===name)));assert.equal(workflow.definitionLevel,'Documented');}
  for(const id of ['openapi-to-mcp','swagger-to-mcp','postman-to-mcp','graphql-to-mcp'])await access(new URL('guides/'+id+'/index.html',root));
 });
 test('CLI and evidence/type filters agree',()=>{
@@ -53,3 +53,5 @@ test('AI task catalog, agent discovery and CLI are shipped with accurate evidenc
  const matches=JSON.parse(execFileSync(process.execPath,['cli.mjs','tasks','--json'],{encoding:'utf8'}));assert.equal(matches.length,machine.tasks.length);
  await access(new URL('solutions/leadadapter/index.html',root));
 });
+
+test('hosted gateway public projection excludes private execution profiles',()=>{for(const entry of catalog.entries.filter(e=>e.executionAuthority==='pipmcp-gateway')){assert.deepEqual(entry.tools,[]);assert.deepEqual(entry.operationIds,[]);assert.equal(entry.localLiveCount,0);assert.deepEqual(entry.localCredentialVariables,['PIPMCP_API_KEY']);assert.ok(!('bindings'in entry));for(const op of entry.historicalEvidence?.operations??[])assert.ok(op.publicReceiptUrl.includes('/'+entry.historicalEvidence.headSha+'/'));}});
