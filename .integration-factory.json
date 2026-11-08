@@ -5,10 +5,12 @@
   "releaseEligible": true,
   "maintainer": "jannikco",
   "license": "MIT",
-  "sourceRevision": "eed57f610329e2506a7b2e8d7a4f65af66d8ad47d5adb5d3b24fac88271560cc",
+  "sourceRevision": "e01ee9634de5c086d5e2ef1ca2d714ac6e3bf35dd9338b97c6bdc2f0db8b8842",
   "evidence": [
-    "Reviewed artifact registry metadata",
-    "Offline directory search and generation tests"
+    "Provider source and authentication facts",
+    "Scoped connector operation evidence",
+    "Actual publication receipts or remote audit",
+    "Offline directory and independent page tests"
   ],
   "provenance": [
     "https://pipmcp.com/",
@@ -17,10 +19,10 @@
   "id": "pipmcp-connectors",
   "kind": "catalog-hub",
   "product": "pipmcp",
-  "title": "PipMCP connectors and developer integration directory",
-  "description": "Search MCP connector setup projects, API clients, authentication requirements and provider documentation.",
+  "title": "PipMCP connector and API integration directory",
+  "description": "Source-backed provider pages with setup and connector types, local and managed operation evidence, and published project links.",
   "operationIds": [],
   "attributionSlug": "github-pipmcp-connectors",
   "factory": "leadadapter-pipmcp",
-  "generatorVersion": 1
+  "generatorVersion": 2
 }

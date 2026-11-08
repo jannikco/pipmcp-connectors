@@ -1,5 +1,5 @@
 # Changelog
 
-## 0.1.0
+## 0.2.0
 
-Initial source-backed integration catalog, offline CLI search and static browser directory.
+Independent provider pages, scoped operation evidence, actual published project links, category and type filters, sitemap and accessible static navigation.

@@ -1,7 +1,7 @@
 {
   "name": "pipmcp-connectors",
-  "version": "0.1.0",
-  "description": "Search MCP connector setup projects, API clients, authentication requirements and provider documentation.",
+  "version": "0.2.0",
+  "description": "Source-backed provider pages with setup and connector types, local and managed operation evidence, and published project links.",
   "type": "module",
   "license": "MIT",
   "engines": {
