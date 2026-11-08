@@ -27,7 +27,7 @@ test('no unpublished repository targets or secret settings are emitted',()=>{
   for(const repo of entry.repositories)assert.ok(known.has(repo.url));assert.equal(entry.repositoryUrl,entry.repositories[0]?.url??null);assert.ok(!('settings' in entry.authentication));
   const activation=new URL(entry.activationUrl);
   if(entry.managedAvailability.status==='manual-setup'){assert.ok(activation.pathname.endsWith('/guides/first-connection/'));assert.equal(activation.searchParams.get('app'),null);}
-  else{assert.equal(activation.pathname,'/github/start');assert.equal(activation.searchParams.get('app'),entry.managedAvailability.status==='import-required'?null:entry.appSlug);assert.equal(activation.searchParams.get('integration'),entry.managedAvailability.status==='import-required'?entry.managedAvailability.integration:entry.id);}
+  else{assert.equal(activation.pathname,'/github/start');assert.equal(activation.searchParams.get('app'),entry.managedAvailability.status==='import-required'?null:entry.appSlug);assert.equal(activation.searchParams.get('integration'),entry.managedAvailability.status==='import-required'?entry.managedAvailability.integration:entry.product==='leadadapter'?'linkedin-mcp':entry.appSlug+'-mcp');}
   assert.equal(activation.searchParams.get('utm_content'),'directory');
  }
 });
