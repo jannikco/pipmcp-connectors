@@ -650,27 +650,25 @@
     },
     {
       "id": "linkedin",
-      "name": "LinkedIn",
+      "name": "LeadAdapter LinkedIn",
       "category": "marketing",
-      "providerWebsite": "https://www.linkedin.com/",
-      "providerDocs": "https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin",
+      "providerWebsite": "https://leadadapter.com/",
+      "providerDocs": "https://leadadapter.com/api/v1/openapi.json",
       "provenance": [
-        "https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin"
+        "https://leadadapter.com/api/v1/openapi.json"
       ],
       "authentication": {
-        "type": "oauth2_authorization_code",
+        "type": "bearer",
         "requiredCredentialFields": [
-          "client_id",
-          "client_secret",
-          "owner_authorization"
+          "LEADADAPTER_API_KEY"
         ],
         "requiredHeaderNames": [],
-        "helpUrl": "https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow",
+        "helpUrl": "https://leadadapter.com/docs/api-reference",
         "tenantRequired": false,
         "accountParameterNames": []
       },
       "appSlug": "linkedin",
-      "product": "pipmcp",
+      "product": "leadadapter",
       "artifactType": "Connector",
       "kind": "provider-connector",
       "description": "Inspect your connected profile state, then retrieve your workspace’s stored leads before planning further governed LinkedIn actions.",
@@ -1043,7 +1041,7 @@
       "localCredentialVariables": [
         "LEADADAPTER_API_KEY"
       ],
-      "activationUrl": "https://pipmcp.com/github/start?app=linkedin&integration=linkedin-mcp&utm_source=github&utm_medium=directory&utm_campaign=github-linkedin-mcp&utm_content=directory"
+      "activationUrl": "https://leadadapter.com/github/start?app=linkedin&integration=linkedin-mcp&utm_source=github&utm_medium=directory&utm_campaign=github-linkedin-mcp&utm_content=directory"
     },
     {
       "id": "linear",
@@ -34781,7 +34779,7 @@
       "name": "LinkedIn account and stored-lead inspection",
       "description": "Inspect your connected profile state, then retrieve your workspace’s stored leads before planning further governed LinkedIn actions.",
       "providerId": "linkedin",
-      "providerName": "LinkedIn",
+      "providerName": "LeadAdapter LinkedIn",
       "steps": [
         "get_extension_status_get",
         "list_leads_get"
@@ -36891,5 +36889,5 @@
     "shipping",
     "support"
   ],
-  "sourceRevision": "c8fa4d88cf27bbb5f182866fa75e50e331fe3c3fa4225451a554a68ddbcb3e8b"
+  "sourceRevision": "b3fea9a42d1dc7af4105d9587784cdabc2e72390fb1de5f5687b2ee679bd2d13"
 }

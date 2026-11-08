@@ -184,4 +184,4 @@ Open http://localhost:8080/. Browser search uses only static catalog JSON. No cr
 ## Deployment and provenance
 
 Canonical base: https://jannikco.github.io/pipmcp-connectors/
-Source digest: `c8fa4d88cf27bbb5f182866fa75e50e331fe3c3fa4225451a554a68ddbcb3e8b`. Includes independent HTML pages, authentication facts, scoped evidence, sitemap, robots.txt and SHA256SUMS. Custom-domain generation and CNAME require DNS/Pages review; the default preserves existing hosting. English. MIT.
+Source digest: `b3fea9a42d1dc7af4105d9587784cdabc2e72390fb1de5f5687b2ee679bd2d13`. Includes independent HTML pages, authentication facts, scoped evidence, sitemap, robots.txt and SHA256SUMS. Custom-domain generation and CNAME require DNS/Pages review; the default preserves existing hosting. English. MIT.
