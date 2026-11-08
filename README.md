@@ -2,7 +2,7 @@
 
 [Browse the directory](https://jannikco.github.io/pipmcp-connectors/)
 
-500 independent provider integration pages · 41 workflow guides · 7 connection/compiler guides · 41 connector implementations · 155 recorded published repositories · 2 operations with Live evidence. These counts measure different things.
+550 independent provider integration pages · 91 workflow guides · 7 connection/compiler guides · 91 connector implementations · 205 recorded published repositories · 2 operations with Live evidence. These counts measure different things.
 
 ## Use the directory
 
@@ -180,8 +180,58 @@ Open http://localhost:8080/. Browser search uses only static catalog JSON. No cr
 - [AssemblyAI MCP server](https://github.com/jannikco/assemblyai-mcp) — provider-connector
 - [Sentry MCP server](https://github.com/jannikco/sentry-mcp) — provider-connector
 - [Cloudflare MCP server](https://github.com/jannikco/cloudflare-mcp) — provider-connector
+- [Shopify MCP server](https://github.com/jannikco/shopify-mcp) — provider-connector
+- [Freshdesk MCP server](https://github.com/jannikco/freshdesk-mcp) — provider-connector
+- [Freshsales MCP server](https://github.com/jannikco/freshsales-mcp) — provider-connector
+- [Zoho CRM MCP server](https://github.com/jannikco/zoho-crm-mcp) — provider-connector
+- [Mailchimp MCP server](https://github.com/jannikco/mailchimp-mcp) — provider-connector
+- [Mailgun MCP server](https://github.com/jannikco/mailgun-mcp) — provider-connector
+- [SendGrid MCP server](https://github.com/jannikco/sendgrid-mcp) — provider-connector
+- [Postmark MCP server](https://github.com/jannikco/postmark-mcp) — provider-connector
+- [Resend MCP server](https://github.com/jannikco/resend-mcp) — provider-connector
+- [Kit (ConvertKit) MCP server](https://github.com/jannikco/kit-mcp) — provider-connector
+- [Customer.io MCP server](https://github.com/jannikco/customer-io-mcp) — provider-connector
+- [lemlist MCP server](https://github.com/jannikco/lemlist-mcp) — provider-connector
+- [Instantly MCP server](https://github.com/jannikco/instantly-mcp) — provider-connector
+- [Smartlead MCP server](https://github.com/jannikco/smartlead-mcp) — provider-connector
+- [Calendly MCP server](https://github.com/jannikco/calendly-mcp) — provider-connector
+- [Typeform MCP server](https://github.com/jannikco/typeform-mcp) — provider-connector
+- [Jotform MCP server](https://github.com/jannikco/jotform-mcp) — provider-connector
+- [Help Scout MCP server](https://github.com/jannikco/help-scout-mcp) — provider-connector
+- [Front MCP server](https://github.com/jannikco/front-mcp) — provider-connector
+- [Gorgias MCP server](https://github.com/jannikco/gorgias-mcp) — provider-connector
+- [Deepgram MCP server](https://github.com/jannikco/deepgram-mcp) — provider-connector
+- [ElevenLabs MCP server](https://github.com/jannikco/elevenlabs-mcp) — provider-connector
+- [Replicate MCP server](https://github.com/jannikco/replicate-mcp) — provider-connector
+- [Hugging Face MCP server](https://github.com/jannikco/hugging-face-mcp) — provider-connector
+- [Pinecone MCP server](https://github.com/jannikco/pinecone-mcp) — provider-connector
+- [Qdrant Cloud MCP server](https://github.com/jannikco/qdrant-mcp) — provider-connector
+- [Tavily MCP server](https://github.com/jannikco/tavily-mcp) — provider-connector
+- [Exa MCP server](https://github.com/jannikco/exa-mcp) — provider-connector
+- [Firecrawl MCP server](https://github.com/jannikco/firecrawl-mcp) — provider-connector
+- [Browserbase MCP server](https://github.com/jannikco/browserbase-mcp) — provider-connector
+- [Bitbucket MCP server](https://github.com/jannikco/bitbucket-mcp) — provider-connector
+- [CircleCI MCP server](https://github.com/jannikco/circleci-mcp) — provider-connector
+- [Buildkite MCP server](https://github.com/jannikco/buildkite-mcp) — provider-connector
+- [DigitalOcean MCP server](https://github.com/jannikco/digitalocean-mcp) — provider-connector
+- [Vercel MCP server](https://github.com/jannikco/vercel-mcp) — provider-connector
+- [Netlify MCP server](https://github.com/jannikco/netlify-mcp) — provider-connector
+- [Render MCP server](https://github.com/jannikco/render-mcp) — provider-connector
+- [Grafana MCP server](https://github.com/jannikco/grafana-mcp) — provider-connector
+- [Datadog MCP server](https://github.com/jannikco/datadog-mcp) — provider-connector
+- [New Relic MCP server](https://github.com/jannikco/new-relic-mcp) — provider-connector
+- [Better Stack MCP server](https://github.com/jannikco/better-stack-mcp) — provider-connector
+- [UptimeRobot MCP server](https://github.com/jannikco/uptimerobot-mcp) — provider-connector
+- [Todoist MCP server](https://github.com/jannikco/todoist-mcp) — provider-connector
+- [Microsoft OneDrive MCP server](https://github.com/jannikco/microsoft-onedrive-mcp) — provider-connector
+- [Google Sheets MCP server](https://github.com/jannikco/google-sheets-mcp) — provider-connector
+- [Google Tasks MCP server](https://github.com/jannikco/google-tasks-mcp) — provider-connector
+- [Google Contacts MCP server](https://github.com/jannikco/google-contacts-mcp) — provider-connector
+- [GitHub Actions MCP server](https://github.com/jannikco/github-actions-mcp) — provider-connector
+- [GitHub Projects MCP server](https://github.com/jannikco/github-projects-mcp) — provider-connector
+- [Azure DevOps MCP server](https://github.com/jannikco/azure-devops-mcp) — provider-connector
 
 ## Deployment and provenance
 
 Canonical base: https://jannikco.github.io/pipmcp-connectors/
-Source digest: `b3fea9a42d1dc7af4105d9587784cdabc2e72390fb1de5f5687b2ee679bd2d13`. Includes independent HTML pages, authentication facts, scoped evidence, sitemap, robots.txt and SHA256SUMS. Custom-domain generation and CNAME require DNS/Pages review; the default preserves existing hosting. English. MIT.
+Source digest: `429da3f56b2c0c672292c9cac23d1644ea4a3eb611f773acec0040cfb1c1d3ad`. Includes independent HTML pages, authentication facts, scoped evidence, sitemap, robots.txt and SHA256SUMS. Custom-domain generation and CNAME require DNS/Pages review; the default preserves existing hosting. English. MIT.

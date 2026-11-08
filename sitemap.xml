@@ -28,22 +28,72 @@
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/asana/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/assemblyai/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/attio/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/azure-devops/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/better-stack/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bitbucket/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/brevo/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/browserbase/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/buildkite/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/calendly/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/circleci/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/clickup/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/cloudflare/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/customer-io/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/datadog/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/deepgram/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/digitalocean/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/discord/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/dropbox/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/e-conomic/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/elevenlabs/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/exa/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/firecrawl/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/freshdesk/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/freshsales/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/front/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/github-actions/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/github-projects/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/google-contacts/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/google-sheets/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/google-tasks/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/gorgias/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/grafana/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/help-scout/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/hugging-face/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/instantly/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/intercom/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/jotform/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/kit/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/lemlist/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/mailchimp/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/mailgun/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/microsoft-onedrive/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/microsoft-outlook/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/microsoft-teams/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/netlify/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/new-relic/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/paypal/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/pinecone/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/postmark/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/qdrant/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/render/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/replicate/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/resend/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/sendgrid/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/sentry/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/shopify/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/smartlead/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/supabase/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/tavily/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/todoist/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/trello/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/typeform/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/uptimerobot/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/vercel/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/woocommerce/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/xero/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/zendesk/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/zoho-crm/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/0codekit/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/10000ft/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/100hires-ats/</loc></url>
@@ -227,7 +277,6 @@
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/axiorank/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/axonaut/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/axosoft/</loc></url>
-  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/azure-devops/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/azure-openai/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/windows-azure-web-sites/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/b2chat/</loc></url>
@@ -256,7 +305,6 @@
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/benetics/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bento/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/berg-system/</loc></url>
-  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/better-stack/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bettercontact/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bhnrewards/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bhuman/</loc></url>
@@ -279,7 +327,6 @@
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/birdviewpsa/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bitabiz/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bitbadges/</loc></url>
-  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bitbucket/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bitly/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bizcrush/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/bkper/</loc></url>
@@ -372,7 +419,6 @@
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/zoomai/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/calendarlink/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/calendesk/</loc></url>
-  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/calendly/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/calibre/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/callabo/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/callari/</loc></url>
@@ -503,6 +549,10 @@
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/cm/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/cms-max/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/codat/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/coderbyte/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/cody/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/cognito-forms/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/integrations/coingecko/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/github/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/hubspot/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/google-drive/</loc></url>
@@ -528,22 +578,72 @@
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/asana/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/assemblyai/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/attio/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/azure-devops/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/better-stack/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/bitbucket/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/brevo/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/browserbase/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/buildkite/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/calendly/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/circleci/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/clickup/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/cloudflare/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/customer-io/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/datadog/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/deepgram/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/digitalocean/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/discord/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/dropbox/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/e-conomic/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/elevenlabs/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/exa/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/firecrawl/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/freshdesk/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/freshsales/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/front/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/github-actions/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/github-projects/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/google-contacts/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/google-sheets/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/google-tasks/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/gorgias/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/grafana/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/help-scout/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/hugging-face/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/instantly/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/intercom/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/jotform/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/kit/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/lemlist/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/mailchimp/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/mailgun/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/microsoft-onedrive/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/microsoft-outlook/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/microsoft-teams/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/netlify/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/new-relic/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/paypal/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/pinecone/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/postmark/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/qdrant/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/render/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/replicate/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/resend/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/sendgrid/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/sentry/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/shopify/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/smartlead/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/supabase/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/tavily/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/todoist/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/trello/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/typeform/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/uptimerobot/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/vercel/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/woocommerce/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/xero/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/zendesk/</loc></url>
+  <url><loc>https://jannikco.github.io/pipmcp-connectors/workflows/zoho-crm/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/guides/setup-vs-connector/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/guides/capability-evidence/</loc></url>
   <url><loc>https://jannikco.github.io/pipmcp-connectors/guides/first-connection/</loc></url>
