@@ -5,7 +5,7 @@
   "releaseEligible": true,
   "maintainer": "jannikco",
   "license": "MIT",
-  "sourceRevision": "9caf455c504af08cb101d0e77d700714b0c67e496ef87ec81cc46e8c15c0963c",
+  "sourceRevision": "eed57f610329e2506a7b2e8d7a4f65af66d8ad47d5adb5d3b24fac88271560cc",
   "evidence": [
     "Reviewed artifact registry metadata",
     "Offline directory search and generation tests"

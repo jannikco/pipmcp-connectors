@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceRevision": "9caf455c504af08cb101d0e77d700714b0c67e496ef87ec81cc46e8c15c0963c",
+  "sourceRevision": "eed57f610329e2506a7b2e8d7a4f65af66d8ad47d5adb5d3b24fac88271560cc",
   "evidence": "Reviewed source metadata and offline configuration tests; provider live authentication and execution not established.",
   "entries": [
     {
@@ -5308,6 +5308,30 @@
       "providerLiveVerification": "not-established",
       "provenance": [
         "https://developers.pipedrive.com/docs/api/v1/openapi-v2.yaml"
+      ]
+    },
+    {
+      "id": "pipmcp-connectors",
+      "name": "PipMCP connectors and developer integration directory",
+      "description": "Search MCP connector setup projects, API clients, authentication requirements and provider documentation.",
+      "kind": "catalog-hub",
+      "product": "pipmcp",
+      "appSlug": "",
+      "repositoryUrl": "https://github.com/jannikco/pipmcp-connectors",
+      "providerWebsite": null,
+      "providerDocs": null,
+      "authentication": {
+        "type": "not-applicable",
+        "requiredCredentialFields": [],
+        "requiredHeaderNames": [],
+        "helpUrl": null,
+        "tenantRequired": false,
+        "accountParameterNames": []
+      },
+      "verification": "mock-only",
+      "providerLiveVerification": "not-established",
+      "provenance": [
+        "https://pipmcp.com/"
       ]
     },
     {

@@ -1,6 +1,8 @@
 # PipMCP connectors and developer integration directory
 
-Search provider setup requirements, authentication methods, API clients and import examples without credentials or network access. This directory contains **190 provider setup projects** and 18 SDK, API, MCP and importer projects.
+Search provider setup requirements, authentication methods, API clients and import examples without credentials or network access. This directory contains **190 provider setup projects** and 19 SDK, API, MCP, importer and catalog projects.
+
+[Open the searchable directory](https://jannikco.github.io/pipmcp-connectors/)
 
 ## Search
 
@@ -227,6 +229,7 @@ This is source-backed setup inventory. Provider authentication and live executio
 | [OpenAPI to MCP import starter](https://github.com/jannikco/openapi-to-mcp) | import-example | not-applicable | See project |
 | [PayPal](https://github.com/jannikco/paypal-mcp) | mcp-setup | oauth2_client_credentials | [Setup docs](https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/invoicing_v2.json) |
 | [Pipedrive](https://github.com/jannikco/pipedrive-mcp) | mcp-setup | api_key_header | [Setup docs](https://developers.pipedrive.com/docs/api/v1/openapi-v2.yaml) |
+| [PipMCP connectors and developer integration directory](https://github.com/jannikco/pipmcp-connectors) | catalog-hub | not-applicable | See project |
 | [Postman to MCP import starter](https://github.com/jannikco/postman-to-mcp) | import-example | not-applicable | See project |
 | [Slack](https://github.com/jannikco/slack-mcp) | mcp-setup | bearer | [Setup docs](https://raw.githubusercontent.com/slackapi/slack-api-specs/master/web-api/slack_web_openapi_v2.json) |
 | [Stripe](https://github.com/jannikco/stripe-mcp) | mcp-setup | bearer | [Setup docs](https://raw.githubusercontent.com/stripe/openapi/master/latest/openapi.spec3.json) |
@@ -239,4 +242,4 @@ This is source-backed setup inventory. Provider authentication and live executio
 
 ## Evidence and maintenance
 
-Catalog data is sanitized from the reviewed integration-factory artifact registry. It contains credential field names, never credential values. Source digest: `9caf455c504af08cb101d0e77d700714b0c67e496ef87ec81cc46e8c15c0963c`. See catalog.json and integration.json. Changes to the source registry regenerate this repository deterministically. Maintainer: jannikco. MIT license.
+Catalog data is sanitized from the reviewed integration-factory artifact registry. It contains credential field names, never credential values. Source digest: `eed57f610329e2506a7b2e8d7a4f65af66d8ad47d5adb5d3b24fac88271560cc`. See catalog.json and integration.json. Changes to the source registry regenerate this repository deterministically. Maintainer: jannikco. MIT license.
