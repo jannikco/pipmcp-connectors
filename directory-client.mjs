@@ -1,5 +1,6 @@
 /** Browser search uses only this public directory's static JSON. No analytics or provider calls. */
 import {searchCatalog} from './search.mjs';
+import {searchTasks} from './tasks.mjs';
 const ids=['search','category','artifact','status'];
 const controls=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
 const resultArea=document.getElementById('results');
@@ -14,7 +15,7 @@ function card(row){
  const header=element('div',undefined,'card-header');header.append(element('span',row.name.slice(0,2).toUpperCase(),'provider-icon'),element('span',row.artifactType,'badge '+(row.artifactType==='Connector'?'connector':'')));
  const heading=element('div');heading.append(element('div',row.category.replaceAll('-',' '),'category'));
  const h=element('h2');const a=element('a',row.name);a.href=row.detailPath;h.append(a);heading.append(h);
- const evidence=element('div',undefined,'evidence-line');evidence.append(element('span','Local: '+row.localLevel+(row.localLiveCount?' · '+row.localLiveCount+' Live ops':'')),element('span','Managed: '+row.managedLevel+(row.managedLiveCount?' · '+row.managedLiveCount+' Live ops':'')));
+ const evidence=element('div',undefined,'evidence-line');evidence.append(element('span',(row.product==='leadadapter'?'Historical local: ':'Local: ')+row.localLevel+(row.localLiveCount?' · '+row.localLiveCount+' Live ops':'')),element('span','Managed: '+row.managedLevel+(row.managedLiveCount?' · '+row.managedLiveCount+' Live ops':'')));
  const footer=element('div',undefined,'card-footer');footer.append(element('span',row.authentication.type.replaceAll('_',' ')),element('span',row.repositories.length?'Public project ↗':'Setup guide →'));
  article.append(header,heading,element('p',row.description),evidence,footer);return article;
 }
@@ -22,6 +23,8 @@ try{
  const response=await fetch(new URL('./catalog.json',import.meta.url));if(!response.ok)throw new Error('Directory unavailable');
  const catalog=await response.json();
  function render(){
+  const taskArea=document.getElementById('task-highlights');
+  if(taskArea){const tasks=searchTasks(catalog.tasks??[],controls.search.value).slice(0,3);taskArea.replaceChildren(...tasks.map(task=>{const article=element('article',undefined,'card task-card'),h=element('h2'),a=element('a',task.title);a.href=task.detailPath;h.append(a);article.append(h,element('p',task.description));return article;}));}
   const rows=searchCatalog(catalog.entries,controls.search.value,{category:controls.category.value,artifactType:controls.artifact.value,status:controls.status.value});
   count.textContent=`${rows.length} matching integrations${rows.length>shown?' · showing '+shown:''}`;
   resultArea.replaceChildren(...rows.slice(0,shown).map(card));

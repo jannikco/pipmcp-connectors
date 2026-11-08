@@ -5,7 +5,7 @@
   "releaseEligible": true,
   "maintainer": "jannikco",
   "license": "MIT",
-  "sourceRevision": "429da3f56b2c0c672292c9cac23d1644ea4a3eb611f773acec0040cfb1c1d3ad",
+  "sourceRevision": "5d6d440bb2f83b0f1404113652ae04f87baef9e1b5e1bd23eed044595661124a",
   "evidence": [
     "Provider source and authentication facts",
     "Scoped connector operation evidence",
@@ -24,5 +24,5 @@
   "operationIds": [],
   "attributionSlug": "github-pipmcp-connectors",
   "factory": "leadadapter-pipmcp",
-  "generatorVersion": 2
+  "generatorVersion": 3
 }

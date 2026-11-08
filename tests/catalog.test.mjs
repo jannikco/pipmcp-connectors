@@ -43,3 +43,13 @@ test('every relative navigation and asset resolves inside the standalone site',a
   }
  }
 });
+
+
+test('AI task catalog, agent discovery and CLI are shipped with accurate evidence boundaries',async()=>{
+ const machine=JSON.parse(await readFile(new URL('tasks.json',root),'utf8'));
+ assert.equal(machine.tasks.length,catalog.tasks.length);
+ const llms=await readFile(new URL('llms.txt',root),'utf8');assert.ok(llms.includes('tasks.json'));assert.ok(llms.includes('discovery is not LinkedIn provider execution'));
+ for(const task of machine.tasks){assert.equal(task.evidence.providerExecution,'Not established by task discovery');await access(new URL(task.detailPath+'index.html',root));for(const repo of task.repositories)assert.ok(catalog.projects.some(project=>project.id===repo.id&&project.repositoryUrl===repo.url));}
+ const matches=JSON.parse(execFileSync(process.execPath,['cli.mjs','tasks','--json'],{encoding:'utf8'}));assert.equal(matches.length,machine.tasks.length);
+ await access(new URL('solutions/leadadapter/index.html',root));
+});

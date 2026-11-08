@@ -1,0 +1,4206 @@
+{
+  "schemaVersion": 1,
+  "scope": "Task and capability discovery; not execution authorization or Live proof",
+  "baseUrl": "https://jannikco.github.io/pipmcp-connectors/",
+  "tasks": [
+    {
+      "id": "research-to-crm",
+      "title": "Research LinkedIn people and promote reviewed prospects to CRM",
+      "description": "Run focused people research, wait for completed results, match exact stored prospect identities, then explicitly approve native LeadAdapter CRM promotion. External CRM sync requires a named provider and separate approval.",
+      "keywords": [
+        "linkedin",
+        "people",
+        "search",
+        "find",
+        "prospect",
+        "research",
+        "lead",
+        "leads",
+        "crm",
+        "sales",
+        "agent",
+        "workflow"
+      ],
+      "repositories": [
+        {
+          "id": "linkedin-api",
+          "url": "https://github.com/jannikco/linkedin-api"
+        },
+        {
+          "id": "linkedin-typescript-sdk",
+          "url": "https://github.com/jannikco/linkedin-typescript-sdk"
+        },
+        {
+          "id": "linkedin-python-sdk",
+          "url": "https://github.com/jannikco/linkedin-python-sdk"
+        },
+        {
+          "id": "linkedin-mcp",
+          "url": "https://github.com/jannikco/linkedin-mcp"
+        }
+      ],
+      "operations": [
+        "search_post",
+        "get_job_get",
+        "list_prospects_get",
+        "manage_prospect_promote_post",
+        "sync_lead_to_crm_post"
+      ],
+      "access": [
+        "LeadAdapter workspace API key",
+        "Connected profile and supported research execution",
+        "api:read for research; api:write for approved promotion/sync"
+      ],
+      "approval": "Research does not authorize promotion. Select exact prospect IDs or full URNs; no name guessing. Native CRM is the default. Uncertain writes hold for reconciliation.",
+      "node": "node lib/cli.mjs workflows research-to-crm --fixture",
+      "python": "python3 -m leadadapter workflows research-to-crm --fixture",
+      "product": "leadadapter",
+      "providerId": "linkedin",
+      "kind": "agent-workflow",
+      "versions": {
+        "sdk": "0.2",
+        "remoteMcpBridge": "0.3"
+      },
+      "detailPath": "tasks/research-to-crm/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/research-to-crm/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "linkedin-people-research",
+      "title": "Find relevant LinkedIn people",
+      "description": "Search people using explicit keywords, follow the returned job receipt and inspect completed results before using them in another workflow.",
+      "keywords": [
+        "linkedin",
+        "people",
+        "search",
+        "find",
+        "research",
+        "prospecting",
+        "founder",
+        "profile"
+      ],
+      "repositories": [
+        {
+          "id": "linkedin-search-api",
+          "url": "https://github.com/jannikco/linkedin-search-api"
+        },
+        {
+          "id": "linkedin-typescript-sdk",
+          "url": "https://github.com/jannikco/linkedin-typescript-sdk"
+        },
+        {
+          "id": "linkedin-python-sdk",
+          "url": "https://github.com/jannikco/linkedin-python-sdk"
+        },
+        {
+          "id": "linkedin-api",
+          "url": "https://github.com/jannikco/linkedin-api"
+        }
+      ],
+      "operations": [
+        "search_post",
+        "get_job_get"
+      ],
+      "access": [
+        "LeadAdapter API key with api:read",
+        "Connected supported LinkedIn execution and required consent"
+      ],
+      "approval": "A fresh-data POST read needs an explicit idempotency key and consumes applicable search budget.",
+      "node": "client.people.search({keywords: [\"B2B SaaS founder\"]}, {idempotencyKey: \"one-key-per-logical-request\"})",
+      "python": "client.people.search([\"B2B SaaS founder\"], idempotency_key=\"one-key-per-logical-request\")",
+      "product": "leadadapter",
+      "providerId": "linkedin",
+      "kind": "agent-workflow",
+      "versions": {
+        "sdk": "0.2",
+        "remoteMcpBridge": "0.3"
+      },
+      "detailPath": "tasks/linkedin-people-research/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/linkedin-people-research/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "linkedin-profile-enrichment",
+      "title": "Enrich a selected LinkedIn profile",
+      "description": "Request available profile context for a known LinkedIn URN, public profile ID or captured lead. Preserve source identity and inspect actual coverage.",
+      "keywords": [
+        "linkedin",
+        "profile",
+        "profiles",
+        "enrichment",
+        "enrich",
+        "research",
+        "identity"
+      ],
+      "repositories": [
+        {
+          "id": "linkedin-profile-api",
+          "url": "https://github.com/jannikco/linkedin-profile-api"
+        },
+        {
+          "id": "linkedin-typescript-sdk",
+          "url": "https://github.com/jannikco/linkedin-typescript-sdk"
+        },
+        {
+          "id": "linkedin-python-sdk",
+          "url": "https://github.com/jannikco/linkedin-python-sdk"
+        }
+      ],
+      "operations": [
+        "enrich_post",
+        "get_job_get"
+      ],
+      "access": [
+        "LeadAdapter API key with api:read",
+        "Supported connected executor, consent and enrichment/profile-view allowances"
+      ],
+      "approval": "A public profile identifier is not permission for unrestricted collection. Email availability and expanded sections are not guaranteed.",
+      "node": "client.profiles.enrich({public_id: \"AUTHORIZED_PROFILE_SLUG\"}, {idempotencyKey: \"one-key-per-logical-request\"})",
+      "python": "client.profiles.enrich(public_id=\"AUTHORIZED_PROFILE_SLUG\", idempotency_key=\"one-key-per-logical-request\")",
+      "product": "leadadapter",
+      "providerId": "linkedin",
+      "kind": "agent-workflow",
+      "versions": {
+        "sdk": "0.2",
+        "remoteMcpBridge": "0.3"
+      },
+      "detailPath": "tasks/linkedin-profile-enrichment/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/linkedin-profile-enrichment/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "linkedin-post-audience",
+      "title": "Research the people engaging with a LinkedIn post",
+      "description": "Request post-engager information available to the connected account, then review exact identities before qualifying prospects.",
+      "keywords": [
+        "linkedin",
+        "post",
+        "engagement",
+        "engagers",
+        "audience",
+        "lead",
+        "leads",
+        "research"
+      ],
+      "repositories": [
+        {
+          "id": "linkedin-post-engagers",
+          "url": "https://github.com/jannikco/linkedin-post-engagers"
+        },
+        {
+          "id": "linkedin-typescript-sdk",
+          "url": "https://github.com/jannikco/linkedin-typescript-sdk"
+        },
+        {
+          "id": "linkedin-python-sdk",
+          "url": "https://github.com/jannikco/linkedin-python-sdk"
+        },
+        {
+          "id": "linkedin-api",
+          "url": "https://github.com/jannikco/linkedin-api"
+        }
+      ],
+      "operations": [
+        "list_post_engagers_post",
+        "get_job_get"
+      ],
+      "access": [
+        "LeadAdapter API key with api:read",
+        "Authorized complete post URN and connected supported execution"
+      ],
+      "approval": "Research is a read workflow; it does not authorize messages, connections or automatic CRM promotion.",
+      "node": "client.posts.engagers({post_urn: \"urn:li:activity:AUTHORIZED_POST_ID\"}, {idempotencyKey: \"one-key-per-logical-request\"})",
+      "python": "client.posts.engagers(\"urn:li:activity:AUTHORIZED_POST_ID\", idempotency_key=\"one-key-per-logical-request\")",
+      "product": "leadadapter",
+      "providerId": "linkedin",
+      "kind": "agent-workflow",
+      "versions": {
+        "sdk": "0.2",
+        "remoteMcpBridge": "0.3"
+      },
+      "detailPath": "tasks/linkedin-post-audience/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/linkedin-post-audience/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "leadadapter-lead-export",
+      "title": "Read and export captured leads",
+      "description": "Read workspace-scoped leads, apply documented filters and paginate the API export into your own destination mapping.",
+      "keywords": [
+        "linkedin",
+        "lead",
+        "leads",
+        "export",
+        "crm",
+        "report",
+        "warehouse",
+        "data"
+      ],
+      "repositories": [
+        {
+          "id": "linkedin-lead-export",
+          "url": "https://github.com/jannikco/linkedin-lead-export"
+        },
+        {
+          "id": "linkedin-api",
+          "url": "https://github.com/jannikco/linkedin-api"
+        },
+        {
+          "id": "linkedin-typescript-sdk",
+          "url": "https://github.com/jannikco/linkedin-typescript-sdk"
+        },
+        {
+          "id": "linkedin-python-sdk",
+          "url": "https://github.com/jannikco/linkedin-python-sdk"
+        }
+      ],
+      "operations": [
+        "list_leads_get",
+        "export_leads_get"
+      ],
+      "access": [
+        "LeadAdapter API key with api:read"
+      ],
+      "approval": "An export is API data, not a preconfigured connector to every third-party CRM.",
+      "node": "client.leads.export({limit: 10})",
+      "python": "client.leads.export(limit=10)",
+      "product": "leadadapter",
+      "providerId": "linkedin",
+      "kind": "agent-workflow",
+      "versions": {
+        "sdk": "0.2",
+        "remoteMcpBridge": "0.3"
+      },
+      "detailPath": "tasks/leadadapter-lead-export/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/leadadapter-lead-export/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "leadadapter-content-calendar",
+      "title": "Connect a LinkedIn publishing calendar",
+      "description": "Read existing content and scheduled post states, then use documented write operations when an approved publishing workflow is needed.",
+      "keywords": [
+        "linkedin",
+        "publishing",
+        "publish",
+        "post",
+        "posts",
+        "schedule",
+        "scheduled",
+        "calendar",
+        "content"
+      ],
+      "repositories": [
+        {
+          "id": "linkedin-content-api",
+          "url": "https://github.com/jannikco/linkedin-content-api"
+        },
+        {
+          "id": "linkedin-scheduled-posts-api",
+          "url": "https://github.com/jannikco/linkedin-scheduled-posts-api"
+        },
+        {
+          "id": "linkedin-api",
+          "url": "https://github.com/jannikco/linkedin-api"
+        }
+      ],
+      "operations": [
+        "list_content_posts_get",
+        "list_scheduled_posts_get",
+        "schedule_post_with_automation_post"
+      ],
+      "access": [
+        "LeadAdapter API key",
+        "Appropriate read/write scopes and publishing prerequisites"
+      ],
+      "approval": "Scheduled, publishing, published and failed are distinct states. A queue receipt is not publication.",
+      "product": "leadadapter",
+      "providerId": "linkedin",
+      "kind": "agent-workflow",
+      "versions": {
+        "sdk": "0.2",
+        "remoteMcpBridge": "0.3"
+      },
+      "detailPath": "tasks/leadadapter-content-calendar/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/leadadapter-content-calendar/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "leadadapter-approved-actions",
+      "title": "Review proposed LinkedIn sales actions",
+      "description": "Read pending approvals and action audit records, then decide specific proposals through the documented governance workflow.",
+      "keywords": [
+        "linkedin",
+        "approve",
+        "approval",
+        "approvals",
+        "governance",
+        "agent",
+        "human",
+        "review",
+        "sales"
+      ],
+      "repositories": [
+        {
+          "id": "linkedin-approvals-api",
+          "url": "https://github.com/jannikco/linkedin-approvals-api"
+        },
+        {
+          "id": "linkedin-api",
+          "url": "https://github.com/jannikco/linkedin-api"
+        },
+        {
+          "id": "linkedin-mcp",
+          "url": "https://github.com/jannikco/linkedin-mcp"
+        }
+      ],
+      "operations": [
+        "list_approvals_get",
+        "decide_approval_post",
+        "list_actions_get"
+      ],
+      "access": [
+        "LeadAdapter workspace API key and required operation scopes"
+      ],
+      "approval": "Approval does not override provider permissions, do-not-engage rules, pacing or workspace caps.",
+      "product": "leadadapter",
+      "providerId": "linkedin",
+      "kind": "agent-workflow",
+      "versions": {
+        "sdk": "0.2",
+        "remoteMcpBridge": "0.3"
+      },
+      "detailPath": "tasks/leadadapter-approved-actions/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/leadadapter-approved-actions/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "leadadapter-event-driven-sales",
+      "title": "React to lead, comment and approval events",
+      "description": "Inspect configured webhook subscriptions and delivery history, then configure an authorized signed-event receiver using the API reference.",
+      "keywords": [
+        "linkedin",
+        "webhook",
+        "webhooks",
+        "automation",
+        "events",
+        "comment",
+        "lead",
+        "leads",
+        "crm"
+      ],
+      "repositories": [
+        {
+          "id": "linkedin-webhooks-api",
+          "url": "https://github.com/jannikco/linkedin-webhooks-api"
+        },
+        {
+          "id": "linkedin-api",
+          "url": "https://github.com/jannikco/linkedin-api"
+        }
+      ],
+      "operations": [
+        "@webhooks_list_get",
+        "@webhooks_create_post",
+        "@webhooks_deliveries_get"
+      ],
+      "access": [
+        "LeadAdapter workspace API key",
+        "Receiver and appropriate webhook-management permissions"
+      ],
+      "approval": "Validate signed deliveries, deduplicate events and separately approve any downstream write.",
+      "product": "leadadapter",
+      "providerId": "linkedin",
+      "kind": "agent-workflow",
+      "versions": {
+        "sdk": "0.2",
+        "remoteMcpBridge": "0.3"
+      },
+      "detailPath": "tasks/leadadapter-event-driven-sales/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/leadadapter-event-driven-sales/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "openapi-to-mcp",
+      "title": "Turn an OpenAPI API into callable MCP tools",
+      "description": "Compile a reviewed API definition locally, inspect generated tools and authentication, then use a callable MCP runtime. Compilation does not connect a provider account or establish live execution.",
+      "product": "pipmcp",
+      "kind": "api-compiler",
+      "keywords": [
+        "openapi",
+        "rest",
+        "api",
+        "schema",
+        "tools",
+        "import",
+        "compiler"
+      ],
+      "repositories": [
+        {
+          "id": "openapi-to-mcp",
+          "url": "https://github.com/jannikco/openapi-to-mcp"
+        }
+      ],
+      "operations": [],
+      "access": [
+        "Your API definition",
+        "Provider credentials only when executing its protected API"
+      ],
+      "approval": "Generated writes require runtime opt-in and explicit per-call approval.",
+      "detailPath": "tasks/openapi-to-mcp/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/openapi-to-mcp/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "swagger-to-mcp",
+      "title": "Turn a Swagger2 API into callable MCP tools",
+      "description": "Compile a reviewed API definition locally, inspect generated tools and authentication, then use a callable MCP runtime. Compilation does not connect a provider account or establish live execution.",
+      "product": "pipmcp",
+      "kind": "api-compiler",
+      "keywords": [
+        "swagger",
+        "rest",
+        "api",
+        "legacy",
+        "schema",
+        "tools",
+        "import",
+        "compiler"
+      ],
+      "repositories": [
+        {
+          "id": "swagger-to-mcp",
+          "url": "https://github.com/jannikco/swagger-to-mcp"
+        }
+      ],
+      "operations": [],
+      "access": [
+        "Your API definition",
+        "Provider credentials only when executing its protected API"
+      ],
+      "approval": "Generated writes require runtime opt-in and explicit per-call approval.",
+      "detailPath": "tasks/swagger-to-mcp/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/swagger-to-mcp/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "postman-to-mcp",
+      "title": "Turn a reviewed Postman collection into MCP tools",
+      "description": "Compile a reviewed API definition locally, inspect generated tools and authentication, then use a callable MCP runtime. Compilation does not connect a provider account or establish live execution.",
+      "product": "pipmcp",
+      "kind": "api-compiler",
+      "keywords": [
+        "postman",
+        "collection",
+        "api",
+        "tools",
+        "import",
+        "compiler"
+      ],
+      "repositories": [
+        {
+          "id": "postman-to-mcp",
+          "url": "https://github.com/jannikco/postman-to-mcp"
+        }
+      ],
+      "operations": [],
+      "access": [
+        "Your API definition",
+        "Provider credentials only when executing its protected API"
+      ],
+      "approval": "Generated writes require runtime opt-in and explicit per-call approval.",
+      "detailPath": "tasks/postman-to-mcp/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/postman-to-mcp/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "graphql-to-mcp",
+      "title": "Turn a GraphQL schema into callable MCP tools",
+      "description": "Compile a reviewed API definition locally, inspect generated tools and authentication, then use a callable MCP runtime. Compilation does not connect a provider account or establish live execution.",
+      "product": "pipmcp",
+      "kind": "api-compiler",
+      "keywords": [
+        "graphql",
+        "introspection",
+        "sdl",
+        "api",
+        "tools",
+        "import",
+        "compiler"
+      ],
+      "repositories": [
+        {
+          "id": "graphql-to-mcp",
+          "url": "https://github.com/jannikco/graphql-to-mcp"
+        }
+      ],
+      "operations": [],
+      "access": [
+        "Your API definition",
+        "Provider credentials only when executing its protected API"
+      ],
+      "approval": "Generated writes require runtime opt-in and explicit per-call approval.",
+      "detailPath": "tasks/graphql-to-mcp/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/graphql-to-mcp/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "github-workflow",
+      "title": "Repository issue briefing",
+      "description": "Identify your account, then list a chosen repository’s issues for a daily triage brief.",
+      "product": "pipmcp",
+      "providerId": "github",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "github",
+        "GitHub",
+        "workflow",
+        "developer",
+        "get_authenticated_user",
+        "list_repository_issues"
+      ],
+      "repositories": [
+        {
+          "id": "github-mcp",
+          "url": "https://github.com/jannikco/github-mcp"
+        }
+      ],
+      "tools": [
+        "get_authenticated_user",
+        "list_repository_issues"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/github-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/github-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "hubspot-workflow",
+      "title": "hubspot-workflow",
+      "description": "Find CRM contacts and inspect their properties before creating a new contact in the same HubSpot account.",
+      "product": "pipmcp",
+      "providerId": "hubspot",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "hubspot",
+        "HubSpot",
+        "workflow",
+        "crm",
+        "hubspot_list_objects",
+        "hubspot_get_object",
+        "hubspot_create_object"
+      ],
+      "repositories": [
+        {
+          "id": "hubspot-mcp",
+          "url": "https://github.com/jannikco/hubspot-mcp"
+        }
+      ],
+      "tools": [
+        "hubspot_list_objects",
+        "hubspot_get_object",
+        "hubspot_create_object"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/hubspot-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/hubspot-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "google-drive-workflow",
+      "title": "Shared document discovery",
+      "description": "Search available file metadata and inspect a chosen document before requesting its contents.",
+      "product": "pipmcp",
+      "providerId": "google-drive",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "google-drive",
+        "Google Drive",
+        "workflow",
+        "documents",
+        "list_files",
+        "get_file_metadata"
+      ],
+      "repositories": [
+        {
+          "id": "google-drive-mcp",
+          "url": "https://github.com/jannikco/google-drive-mcp"
+        }
+      ],
+      "tools": [
+        "list_files",
+        "get_file_metadata"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/google-drive-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/google-drive-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "linear-workflow",
+      "title": "Issue status brief",
+      "description": "Confirm the API key owner and collect a page of issues to summarize project activity.",
+      "product": "pipmcp",
+      "providerId": "linear",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "linear",
+        "Linear",
+        "workflow",
+        "project-management",
+        "get_viewer",
+        "list_issues"
+      ],
+      "repositories": [
+        {
+          "id": "linear-mcp",
+          "url": "https://github.com/jannikco/linear-mcp"
+        }
+      ],
+      "tools": [
+        "get_viewer",
+        "list_issues"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/linear-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/linear-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "slack-workflow",
+      "title": "Channel access audit",
+      "description": "Identify the connected workspace and list visible conversations before choosing a notification channel.",
+      "product": "pipmcp",
+      "providerId": "slack",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "slack",
+        "Slack",
+        "workflow",
+        "communication",
+        "test_auth",
+        "list_conversations"
+      ],
+      "repositories": [
+        {
+          "id": "slack-mcp",
+          "url": "https://github.com/jannikco/slack-mcp"
+        }
+      ],
+      "tools": [
+        "test_auth",
+        "list_conversations"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/slack-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/slack-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "airtable-workflow",
+      "title": "CRM table briefing",
+      "description": "Find an accessible base and read one selected table to prepare a customer briefing.",
+      "product": "pipmcp",
+      "providerId": "airtable",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "airtable",
+        "Airtable",
+        "workflow",
+        "productivity",
+        "list_bases",
+        "list_records"
+      ],
+      "repositories": [
+        {
+          "id": "airtable-mcp",
+          "url": "https://github.com/jannikco/airtable-mcp"
+        }
+      ],
+      "tools": [
+        "list_bases",
+        "list_records"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/airtable-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/airtable-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "notion-workflow",
+      "title": "Knowledge search",
+      "description": "Verify the connected integration, then search shared notes by title for a meeting briefing.",
+      "product": "pipmcp",
+      "providerId": "notion",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "notion",
+        "Notion",
+        "workflow",
+        "productivity",
+        "get_bot_user",
+        "search_pages"
+      ],
+      "repositories": [
+        {
+          "id": "notion-mcp",
+          "url": "https://github.com/jannikco/notion-mcp"
+        }
+      ],
+      "tools": [
+        "get_bot_user",
+        "search_pages"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/notion-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/notion-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "pipedrive-workflow",
+      "title": "pipedrive-workflow",
+      "description": "Read the sales contact list and add a person to an existing sales workspace.",
+      "product": "pipmcp",
+      "providerId": "pipedrive",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "pipedrive",
+        "Pipedrive",
+        "workflow",
+        "crm",
+        "pipedrive_list_persons",
+        "pipedrive_get_person",
+        "pipedrive_create_person"
+      ],
+      "repositories": [
+        {
+          "id": "pipedrive-mcp",
+          "url": "https://github.com/jannikco/pipedrive-mcp"
+        }
+      ],
+      "tools": [
+        "pipedrive_list_persons",
+        "pipedrive_get_person",
+        "pipedrive_create_person"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/pipedrive-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/pipedrive-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "stripe-workflow",
+      "title": "stripe-workflow",
+      "description": "Inspect sandbox customers and create a customer record using a restricted key; no payment collection.",
+      "product": "pipmcp",
+      "providerId": "stripe",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "stripe",
+        "Stripe",
+        "workflow",
+        "payments",
+        "stripe_list_customers",
+        "stripe_get_customer",
+        "stripe_create_customer"
+      ],
+      "repositories": [
+        {
+          "id": "stripe-mcp",
+          "url": "https://github.com/jannikco/stripe-mcp"
+        }
+      ],
+      "tools": [
+        "stripe_list_customers",
+        "stripe_get_customer",
+        "stripe_create_customer"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/stripe-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/stripe-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "google-calendar-workflow",
+      "title": "Daily calendar briefing",
+      "description": "Choose an accessible calendar and read upcoming events to prepare the day’s agenda.",
+      "product": "pipmcp",
+      "providerId": "google-calendar",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "google-calendar",
+        "Google Calendar",
+        "workflow",
+        "scheduling",
+        "list_calendars",
+        "list_events"
+      ],
+      "repositories": [
+        {
+          "id": "google-calendar-mcp",
+          "url": "https://github.com/jannikco/google-calendar-mcp"
+        }
+      ],
+      "tools": [
+        "list_calendars",
+        "list_events"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/google-calendar-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/google-calendar-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "gitlab-workflow",
+      "title": "GitLab sprint triage",
+      "description": "Confirm the token owner and collect a project’s open issues for a sprint handover.",
+      "product": "pipmcp",
+      "providerId": "gitlab",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "gitlab",
+        "GitLab",
+        "workflow",
+        "developer",
+        "get_current_user",
+        "list_project_issues"
+      ],
+      "repositories": [
+        {
+          "id": "gitlab-mcp",
+          "url": "https://github.com/jannikco/gitlab-mcp"
+        }
+      ],
+      "tools": [
+        "get_current_user",
+        "list_project_issues"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/gitlab-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/gitlab-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "46elks-workflow",
+      "title": "46elks-workflow",
+      "description": "Check the telecom account and explicitly approve one SMS to an authorized recipient.",
+      "product": "pipmcp",
+      "providerId": "46elks",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "46elks",
+        "46elks",
+        "workflow",
+        "communication",
+        "elks46_get_account",
+        "elks46_send_sms"
+      ],
+      "repositories": [
+        {
+          "id": "46elks-mcp",
+          "url": "https://github.com/jannikco/46elks-mcp"
+        }
+      ],
+      "tools": [
+        "elks46_get_account",
+        "elks46_send_sms"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/46elks-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/46elks-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "8x8-workflow",
+      "title": "8x8-workflow",
+      "description": "Inspect messaging account balance/status and explicitly approve one SMS in the correct account region.",
+      "product": "pipmcp",
+      "providerId": "8x8",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "8x8",
+        "8x8",
+        "workflow",
+        "communication",
+        "eightx8_get_balance",
+        "eightx8_get_sms",
+        "eightx8_send_sms"
+      ],
+      "repositories": [
+        {
+          "id": "8x8-mcp",
+          "url": "https://github.com/jannikco/8x8-mcp"
+        }
+      ],
+      "tools": [
+        "eightx8_get_balance",
+        "eightx8_get_sms",
+        "eightx8_send_sms"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/8x8-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/8x8-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "abyssale-workflow",
+      "title": "abyssale-workflow",
+      "description": "Discover design templates, request asset generation and poll until the generated files are ready.",
+      "product": "pipmcp",
+      "providerId": "abyssale",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "abyssale",
+        "Abyssale",
+        "workflow",
+        "marketing",
+        "abyssale_list_designs",
+        "abyssale_get_generation",
+        "abyssale_generate_formats"
+      ],
+      "repositories": [
+        {
+          "id": "abyssale-mcp",
+          "url": "https://github.com/jannikco/abyssale-mcp"
+        }
+      ],
+      "tools": [
+        "abyssale_list_designs",
+        "abyssale_get_generation",
+        "abyssale_generate_formats"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/abyssale-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/abyssale-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "accredible-workflow",
+      "title": "accredible-workflow",
+      "description": "Inspect an issued credential and create an unapproved credential for an existing credential group.",
+      "product": "pipmcp",
+      "providerId": "accredible",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "accredible",
+        "Accredible Certificates",
+        "workflow",
+        "documents",
+        "accredible_get_credential",
+        "accredible_create_credential"
+      ],
+      "repositories": [
+        {
+          "id": "accredible-mcp",
+          "url": "https://github.com/jannikco/accredible-mcp"
+        }
+      ],
+      "tools": [
+        "accredible_get_credential",
+        "accredible_create_credential"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/accredible-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/accredible-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "activecampaign-workflow",
+      "title": "activecampaign-workflow",
+      "description": "Find existing marketing contacts and create a new contact record without changing subscriptions.",
+      "product": "pipmcp",
+      "providerId": "activecampaign",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "activecampaign",
+        "ActiveCampaign",
+        "workflow",
+        "marketing",
+        "activecampaign_list_contacts",
+        "activecampaign_create_contact"
+      ],
+      "repositories": [
+        {
+          "id": "activecampaign-mcp",
+          "url": "https://github.com/jannikco/activecampaign-mcp"
+        }
+      ],
+      "tools": [
+        "activecampaign_list_contacts",
+        "activecampaign_create_contact"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/activecampaign-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/activecampaign-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "adobe-acrobat-sign-workflow",
+      "title": "adobe-acrobat-sign-workflow",
+      "description": "Inspect signature agreements and prepare a DRAFT from existing document references without sending invitations.",
+      "product": "pipmcp",
+      "providerId": "adobe-acrobat-sign",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "adobe-acrobat-sign",
+        "Adobe Acrobat Sign",
+        "workflow",
+        "documents",
+        "adobe_sign_list_agreements",
+        "adobe_sign_get_agreement",
+        "adobe_sign_create_draft"
+      ],
+      "repositories": [
+        {
+          "id": "adobe-acrobat-sign-mcp",
+          "url": "https://github.com/jannikco/adobe-acrobat-sign-mcp"
+        }
+      ],
+      "tools": [
+        "adobe_sign_list_agreements",
+        "adobe_sign_get_agreement",
+        "adobe_sign_create_draft"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/adobe-acrobat-sign-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/adobe-acrobat-sign-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "agorapulse-workflow",
+      "title": "agorapulse-workflow",
+      "description": "Discover the social workspace and profiles, then add an internal calendar note without publishing.",
+      "product": "pipmcp",
+      "providerId": "agorapulse",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "agorapulse",
+        "Agorapulse",
+        "workflow",
+        "marketing",
+        "agorapulse_list_organizations",
+        "agorapulse_list_profiles",
+        "agorapulse_create_calendar_note"
+      ],
+      "repositories": [
+        {
+          "id": "agorapulse-mcp",
+          "url": "https://github.com/jannikco/agorapulse-mcp"
+        }
+      ],
+      "tools": [
+        "agorapulse_list_organizations",
+        "agorapulse_list_profiles",
+        "agorapulse_create_calendar_note"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/agorapulse-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/agorapulse-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "algolia-workflow",
+      "title": "Catalog search audit",
+      "description": "Inspect available indices and query a chosen product index to review search relevance.",
+      "product": "pipmcp",
+      "providerId": "algolia",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "algolia",
+        "Algolia",
+        "workflow",
+        "developer",
+        "list_indices",
+        "search_index"
+      ],
+      "repositories": [
+        {
+          "id": "algolia-mcp",
+          "url": "https://github.com/jannikco/algolia-mcp"
+        }
+      ],
+      "tools": [
+        "list_indices",
+        "search_index"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/algolia-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/algolia-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "apify-workflow",
+      "title": "Actor inventory",
+      "description": "Review account identity and existing Actors before deciding which existing automation to inspect.",
+      "product": "pipmcp",
+      "providerId": "apify",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "apify",
+        "Apify",
+        "workflow",
+        "data",
+        "get_current_user",
+        "list_actors"
+      ],
+      "repositories": [
+        {
+          "id": "apify-mcp",
+          "url": "https://github.com/jannikco/apify-mcp"
+        }
+      ],
+      "tools": [
+        "get_current_user",
+        "list_actors"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/apify-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/apify-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "arize-ax-workflow",
+      "title": "arize-ax-workflow",
+      "description": "Review evaluation datasets and create a dataset with user-owned example records in an existing space.",
+      "product": "pipmcp",
+      "providerId": "arize-ax",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "arize-ax",
+        "Arize AX",
+        "workflow",
+        "developer",
+        "arize_list_datasets",
+        "arize_get_dataset",
+        "arize_create_dataset"
+      ],
+      "repositories": [
+        {
+          "id": "arize-ax-mcp",
+          "url": "https://github.com/jannikco/arize-ax-mcp"
+        }
+      ],
+      "tools": [
+        "arize_list_datasets",
+        "arize_get_dataset",
+        "arize_create_dataset"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/arize-ax-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/arize-ax-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "asana-workflow",
+      "title": "Workspace inventory",
+      "description": "Confirm your identity and inspect workspace access before preparing project reports.",
+      "product": "pipmcp",
+      "providerId": "asana",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "asana",
+        "Asana",
+        "workflow",
+        "project-management",
+        "get_current_user",
+        "list_workspaces"
+      ],
+      "repositories": [
+        {
+          "id": "asana-mcp",
+          "url": "https://github.com/jannikco/asana-mcp"
+        }
+      ],
+      "tools": [
+        "get_current_user",
+        "list_workspaces"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/asana-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/asana-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "assemblyai-workflow",
+      "title": "assemblyai-workflow",
+      "description": "Find existing transcripts and submit an authorized audio URL for asynchronous transcription, then poll completion.",
+      "product": "pipmcp",
+      "providerId": "assemblyai",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "assemblyai",
+        "AssemblyAI",
+        "workflow",
+        "data",
+        "assemblyai_list_transcripts",
+        "assemblyai_get_transcript",
+        "assemblyai_submit_transcript"
+      ],
+      "repositories": [
+        {
+          "id": "assemblyai-mcp",
+          "url": "https://github.com/jannikco/assemblyai-mcp"
+        }
+      ],
+      "tools": [
+        "assemblyai_list_transcripts",
+        "assemblyai_get_transcript",
+        "assemblyai_submit_transcript"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/assemblyai-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/assemblyai-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "attio-workflow",
+      "title": "attio-workflow",
+      "description": "Query CRM records, inspect one record, then create a record with the workspace attribute values.",
+      "product": "pipmcp",
+      "providerId": "attio",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "attio",
+        "Attio",
+        "workflow",
+        "crm",
+        "attio_query_records",
+        "attio_get_record",
+        "attio_create_record"
+      ],
+      "repositories": [
+        {
+          "id": "attio-mcp",
+          "url": "https://github.com/jannikco/attio-mcp"
+        }
+      ],
+      "tools": [
+        "attio_query_records",
+        "attio_get_record",
+        "attio_create_record"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/attio-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/attio-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "azure-devops-workflow",
+      "title": "Review project builds then approve a selected pipeline run",
+      "description": "Review project builds then approve a selected pipeline run. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "azure-devops",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "azure-devops",
+        "Azure DevOps",
+        "workflow",
+        "developer",
+        "list_projects",
+        "list_builds",
+        "run_pipeline"
+      ],
+      "repositories": [
+        {
+          "id": "azure-devops-mcp",
+          "url": "https://github.com/jannikco/azure-devops-mcp"
+        }
+      ],
+      "tools": [
+        "list_projects",
+        "list_builds",
+        "run_pipeline"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/azure-devops-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/azure-devops-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "better-stack-workflow",
+      "title": "Review uptime coverage and create an approved status monitor",
+      "description": "Review uptime coverage and create an approved status monitor. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "better-stack",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "better-stack",
+        "Better Stack Uptime",
+        "workflow",
+        "developer",
+        "list_monitors",
+        "get_monitor",
+        "create_status_monitor"
+      ],
+      "repositories": [
+        {
+          "id": "better-stack-mcp",
+          "url": "https://github.com/jannikco/better-stack-mcp"
+        }
+      ],
+      "tools": [
+        "list_monitors",
+        "get_monitor",
+        "create_status_monitor"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/better-stack-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/better-stack-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "bitbucket-workflow",
+      "title": "Review branch changes and open a reviewed pull request",
+      "description": "Review branch changes and open a reviewed pull request. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "bitbucket",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "bitbucket",
+        "Bitbucket",
+        "workflow",
+        "developer",
+        "list_pull_requests",
+        "get_pull_request",
+        "create_pull_request"
+      ],
+      "repositories": [
+        {
+          "id": "bitbucket-mcp",
+          "url": "https://github.com/jannikco/bitbucket-mcp"
+        }
+      ],
+      "tools": [
+        "list_pull_requests",
+        "get_pull_request",
+        "create_pull_request"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/bitbucket-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/bitbucket-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "brevo-workflow",
+      "title": "brevo-workflow",
+      "description": "Review the marketing contact list and add a contact record without sending a campaign.",
+      "product": "pipmcp",
+      "providerId": "brevo",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "brevo",
+        "Brevo",
+        "workflow",
+        "email",
+        "brevo_list_contacts",
+        "brevo_create_contact"
+      ],
+      "repositories": [
+        {
+          "id": "brevo-mcp",
+          "url": "https://github.com/jannikco/brevo-mcp"
+        }
+      ],
+      "tools": [
+        "brevo_list_contacts",
+        "brevo_create_contact"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/brevo-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/brevo-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "browserbase-workflow",
+      "title": "Manage a short-lived browser session",
+      "description": "Inspect existing sessions, approve creation only if needed, then request release of the returned session ID and inspect its final state. Actual browser driving requires a separate CDP client.",
+      "product": "pipmcp",
+      "providerId": "browserbase",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "browserbase",
+        "Browserbase",
+        "workflow",
+        "developer",
+        "list_sessions",
+        "create_session",
+        "release_session",
+        "get_session"
+      ],
+      "repositories": [
+        {
+          "id": "browserbase-mcp",
+          "url": "https://github.com/jannikco/browserbase-mcp"
+        }
+      ],
+      "tools": [
+        "list_sessions",
+        "create_session",
+        "release_session",
+        "get_session"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/browserbase-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/browserbase-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "buildkite-workflow",
+      "title": "Inspect pipeline failures and request an approved build",
+      "description": "Inspect pipeline failures and request an approved build. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "buildkite",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "buildkite",
+        "Buildkite",
+        "workflow",
+        "developer",
+        "list_builds",
+        "get_build",
+        "create_build"
+      ],
+      "repositories": [
+        {
+          "id": "buildkite-mcp",
+          "url": "https://github.com/jannikco/buildkite-mcp"
+        }
+      ],
+      "tools": [
+        "list_builds",
+        "get_build",
+        "create_build"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/buildkite-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/buildkite-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "calendly-workflow",
+      "title": "Calendly authorized workflow",
+      "description": "Identify the authenticated scheduler, inspect event types and explicitly create a one-use scheduling link.",
+      "product": "pipmcp",
+      "providerId": "calendly",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "calendly",
+        "Calendly",
+        "workflow",
+        "scheduling",
+        "calendly_get_current_user",
+        "calendly_list_event_types",
+        "calendly_create_single_use_link"
+      ],
+      "repositories": [
+        {
+          "id": "calendly-mcp",
+          "url": "https://github.com/jannikco/calendly-mcp"
+        }
+      ],
+      "tools": [
+        "calendly_get_current_user",
+        "calendly_list_event_types",
+        "calendly_create_single_use_link"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/calendly-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/calendly-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "circleci-workflow",
+      "title": "Investigate pipelines then cancel a reviewed stuck workflow",
+      "description": "Investigate pipelines then cancel a reviewed stuck workflow. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "circleci",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "circleci",
+        "CircleCI",
+        "workflow",
+        "developer",
+        "list_project_pipelines",
+        "list_pipeline_workflows",
+        "cancel_workflow"
+      ],
+      "repositories": [
+        {
+          "id": "circleci-mcp",
+          "url": "https://github.com/jannikco/circleci-mcp"
+        }
+      ],
+      "tools": [
+        "list_project_pipelines",
+        "list_pipeline_workflows",
+        "cancel_workflow"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/circleci-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/circleci-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "clickup-workflow",
+      "title": "Workspace access review",
+      "description": "Confirm the user and available ClickUp workspaces before selecting a team for reporting.",
+      "product": "pipmcp",
+      "providerId": "clickup",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "clickup",
+        "ClickUp",
+        "workflow",
+        "project-management",
+        "get_current_user",
+        "list_workspaces"
+      ],
+      "repositories": [
+        {
+          "id": "clickup-mcp",
+          "url": "https://github.com/jannikco/clickup-mcp"
+        }
+      ],
+      "tools": [
+        "get_current_user",
+        "list_workspaces"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/clickup-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/clickup-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "cloudflare-workflow",
+      "title": "Zone access review",
+      "description": "Verify a least-privilege token and inspect the domains it can access before changing DNS.",
+      "product": "pipmcp",
+      "providerId": "cloudflare",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "cloudflare",
+        "Cloudflare",
+        "workflow",
+        "developer",
+        "verify_token",
+        "list_zones"
+      ],
+      "repositories": [
+        {
+          "id": "cloudflare-mcp",
+          "url": "https://github.com/jannikco/cloudflare-mcp"
+        }
+      ],
+      "tools": [
+        "verify_token",
+        "list_zones"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/cloudflare-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/cloudflare-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "customer-io-workflow",
+      "title": "Customer.io authorized workflow",
+      "description": "Inspect existing segments and explicitly create an empty manual segment for a planned audience.",
+      "product": "pipmcp",
+      "providerId": "customer-io",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "customer-io",
+        "Customer.io",
+        "workflow",
+        "marketing",
+        "customerio_list_segments",
+        "customerio_create_manual_segment"
+      ],
+      "repositories": [
+        {
+          "id": "customer-io-mcp",
+          "url": "https://github.com/jannikco/customer-io-mcp"
+        }
+      ],
+      "tools": [
+        "customerio_list_segments",
+        "customerio_create_manual_segment"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/customer-io-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/customer-io-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "datadog-workflow",
+      "title": "Review monitors then record an approved operational event",
+      "description": "Review monitors then record an approved operational event. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "datadog",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "datadog",
+        "Datadog",
+        "workflow",
+        "developer",
+        "validate_api_key",
+        "list_monitors",
+        "create_event"
+      ],
+      "repositories": [
+        {
+          "id": "datadog-mcp",
+          "url": "https://github.com/jannikco/datadog-mcp"
+        }
+      ],
+      "tools": [
+        "validate_api_key",
+        "list_monitors",
+        "create_event"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/datadog-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/datadog-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "deepgram-workflow",
+      "title": "Audit and transcribe approved audio",
+      "description": "Inspect accessible projects and request history, then approve a single URL transcription. Long audio may exceed the bounded HTTP timeout; inspect request history before retrying an uncertain paid request.",
+      "product": "pipmcp",
+      "providerId": "deepgram",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "deepgram",
+        "Deepgram",
+        "workflow",
+        "developer",
+        "list_projects",
+        "list_project_requests",
+        "transcribe_audio_url"
+      ],
+      "repositories": [
+        {
+          "id": "deepgram-mcp",
+          "url": "https://github.com/jannikco/deepgram-mcp"
+        }
+      ],
+      "tools": [
+        "list_projects",
+        "list_project_requests",
+        "transcribe_audio_url"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/deepgram-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/deepgram-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "digitalocean-workflow",
+      "title": "Inventory infrastructure and create an approved project container",
+      "description": "Inventory infrastructure and create an approved project container. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "digitalocean",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "digitalocean",
+        "DigitalOcean",
+        "workflow",
+        "developer",
+        "list_projects",
+        "list_droplets",
+        "create_project"
+      ],
+      "repositories": [
+        {
+          "id": "digitalocean-mcp",
+          "url": "https://github.com/jannikco/digitalocean-mcp"
+        }
+      ],
+      "tools": [
+        "list_projects",
+        "list_droplets",
+        "create_project"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/digitalocean-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/digitalocean-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "discord-workflow",
+      "title": "Community channel inventory",
+      "description": "Confirm bot identity and list a guild’s channels before drafting a community update.",
+      "product": "pipmcp",
+      "providerId": "discord",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "discord",
+        "Discord",
+        "workflow",
+        "communication",
+        "get_current_user",
+        "list_guild_channels"
+      ],
+      "repositories": [
+        {
+          "id": "discord-mcp",
+          "url": "https://github.com/jannikco/discord-mcp"
+        }
+      ],
+      "tools": [
+        "get_current_user",
+        "list_guild_channels"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/discord-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/discord-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "dropbox-workflow",
+      "title": "Folder inventory",
+      "description": "Confirm the account, list a chosen folder, and continue using returned cursors to create a document inventory.",
+      "product": "pipmcp",
+      "providerId": "dropbox",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "dropbox",
+        "Dropbox",
+        "workflow",
+        "documents",
+        "get_current_account",
+        "list_folder",
+        "continue_folder_listing"
+      ],
+      "repositories": [
+        {
+          "id": "dropbox-mcp",
+          "url": "https://github.com/jannikco/dropbox-mcp"
+        }
+      ],
+      "tools": [
+        "get_current_account",
+        "list_folder",
+        "continue_folder_listing"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/dropbox-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/dropbox-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "e-conomic-workflow",
+      "title": "e-conomic-workflow",
+      "description": "Find an accounting customer and add a named contact to that existing customer.",
+      "product": "pipmcp",
+      "providerId": "e-conomic",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "e-conomic",
+        "e-conomic",
+        "workflow",
+        "accounting",
+        "economic_list_customers",
+        "economic_get_customer",
+        "economic_create_customer_contact"
+      ],
+      "repositories": [
+        {
+          "id": "e-conomic-mcp",
+          "url": "https://github.com/jannikco/e-conomic-mcp"
+        }
+      ],
+      "tools": [
+        "economic_list_customers",
+        "economic_get_customer",
+        "economic_create_customer_contact"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/e-conomic-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/e-conomic-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "elevenlabs-workflow",
+      "title": "Choose voice and model",
+      "description": "Search voice metadata and inspect model language/capability metadata to prepare a compatible audio workflow. Audio generation remains in the provider SDK, not this JSON connector.",
+      "product": "pipmcp",
+      "providerId": "elevenlabs",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "elevenlabs",
+        "ElevenLabs",
+        "workflow",
+        "data",
+        "list_voices",
+        "list_models"
+      ],
+      "repositories": [
+        {
+          "id": "elevenlabs-mcp",
+          "url": "https://github.com/jannikco/elevenlabs-mcp"
+        }
+      ],
+      "tools": [
+        "list_voices",
+        "list_models"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/elevenlabs-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/elevenlabs-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "exa-workflow",
+      "title": "Search then retrieve bounded sources",
+      "description": "Find source URLs and retrieve only selected pages with bounded text size. Review per-result status and provider usage before treating an extraction as available.",
+      "product": "pipmcp",
+      "providerId": "exa",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "exa",
+        "Exa",
+        "workflow",
+        "data",
+        "search_web",
+        "get_contents"
+      ],
+      "repositories": [
+        {
+          "id": "exa-mcp",
+          "url": "https://github.com/jannikco/exa-mcp"
+        }
+      ],
+      "tools": [
+        "search_web",
+        "get_contents"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/exa-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/exa-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "firecrawl-workflow",
+      "title": "Map and read a selected page",
+      "description": "Discover a bounded set of site URLs, choose one relevant page, and request its Markdown content. Provider billing, access restrictions and page-level failures remain visible.",
+      "product": "pipmcp",
+      "providerId": "firecrawl",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "firecrawl",
+        "Firecrawl",
+        "workflow",
+        "data",
+        "map_site",
+        "scrape_page"
+      ],
+      "repositories": [
+        {
+          "id": "firecrawl-mcp",
+          "url": "https://github.com/jannikco/firecrawl-mcp"
+        }
+      ],
+      "tools": [
+        "map_site",
+        "scrape_page"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/firecrawl-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/firecrawl-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "freshdesk-workflow",
+      "title": "Freshdesk authorized workflow",
+      "description": "Review current tickets and explicitly open a support ticket for an authorized requester.",
+      "product": "pipmcp",
+      "providerId": "freshdesk",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "freshdesk",
+        "Freshdesk",
+        "workflow",
+        "developer",
+        "freshdesk_list_tickets",
+        "freshdesk_create_ticket"
+      ],
+      "repositories": [
+        {
+          "id": "freshdesk-mcp",
+          "url": "https://github.com/jannikco/freshdesk-mcp"
+        }
+      ],
+      "tools": [
+        "freshdesk_list_tickets",
+        "freshdesk_create_ticket"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/freshdesk-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/freshdesk-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "freshsales-workflow",
+      "title": "Freshsales authorized workflow",
+      "description": "Inspect an existing CRM contact before explicitly adding another contact.",
+      "product": "pipmcp",
+      "providerId": "freshsales",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "freshsales",
+        "Freshsales",
+        "workflow",
+        "developer",
+        "freshsales_get_contact",
+        "freshsales_create_contact"
+      ],
+      "repositories": [
+        {
+          "id": "freshsales-mcp",
+          "url": "https://github.com/jannikco/freshsales-mcp"
+        }
+      ],
+      "tools": [
+        "freshsales_get_contact",
+        "freshsales_create_contact"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/freshsales-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/freshsales-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "front-workflow",
+      "title": "Front authorized workflow",
+      "description": "Find support contacts and explicitly add a new email contact without sending a message.",
+      "product": "pipmcp",
+      "providerId": "front",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "front",
+        "Front",
+        "workflow",
+        "support",
+        "front_list_contacts",
+        "front_create_contact"
+      ],
+      "repositories": [
+        {
+          "id": "front-mcp",
+          "url": "https://github.com/jannikco/front-mcp"
+        }
+      ],
+      "tools": [
+        "front_list_contacts",
+        "front_create_contact"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/front-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/front-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "github-actions-workflow",
+      "title": "Inspect CI runs then dispatch an explicitly reviewed workflow",
+      "description": "Inspect CI runs then dispatch an explicitly reviewed workflow. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "github-actions",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "github-actions",
+        "GitHub Actions",
+        "workflow",
+        "developer",
+        "list_workflow_runs",
+        "list_workflows",
+        "dispatch_workflow"
+      ],
+      "repositories": [
+        {
+          "id": "github-actions-mcp",
+          "url": "https://github.com/jannikco/github-actions-mcp"
+        }
+      ],
+      "tools": [
+        "list_workflow_runs",
+        "list_workflows",
+        "dispatch_workflow"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/github-actions-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/github-actions-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "github-projects-workflow",
+      "title": "Summarize project work then link an approved existing issue or pull request",
+      "description": "Summarize project work then link an approved existing issue or pull request. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "github-projects",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "github-projects",
+        "GitHub Projects",
+        "workflow",
+        "developer",
+        "list_organization_projects",
+        "list_project_items",
+        "add_project_item"
+      ],
+      "repositories": [
+        {
+          "id": "github-projects-mcp",
+          "url": "https://github.com/jannikco/github-projects-mcp"
+        }
+      ],
+      "tools": [
+        "list_organization_projects",
+        "list_project_items",
+        "add_project_item"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/github-projects-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/github-projects-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "google-contacts-workflow",
+      "title": "Inspect personal contacts and create a reviewed contact",
+      "description": "Inspect personal contacts and create a reviewed contact. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "google-contacts",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "google-contacts",
+        "Google Contacts",
+        "workflow",
+        "developer",
+        "list_connections",
+        "get_contact",
+        "create_contact"
+      ],
+      "repositories": [
+        {
+          "id": "google-contacts-mcp",
+          "url": "https://github.com/jannikco/google-contacts-mcp"
+        }
+      ],
+      "tools": [
+        "list_connections",
+        "get_contact",
+        "create_contact"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/google-contacts-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/google-contacts-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "google-sheets-workflow",
+      "title": "Inspect spreadsheet data then append an approved report row",
+      "description": "Inspect spreadsheet data then append an approved report row. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "google-sheets",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "google-sheets",
+        "Google Sheets",
+        "workflow",
+        "developer",
+        "get_spreadsheet",
+        "get_values",
+        "append_values"
+      ],
+      "repositories": [
+        {
+          "id": "google-sheets-mcp",
+          "url": "https://github.com/jannikco/google-sheets-mcp"
+        }
+      ],
+      "tools": [
+        "get_spreadsheet",
+        "get_values",
+        "append_values"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/google-sheets-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/google-sheets-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "google-tasks-workflow",
+      "title": "Inspect personal task lists and create an approved next action",
+      "description": "Inspect personal task lists and create an approved next action. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "google-tasks",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "google-tasks",
+        "Google Tasks",
+        "workflow",
+        "developer",
+        "list_task_lists",
+        "list_tasks",
+        "create_task"
+      ],
+      "repositories": [
+        {
+          "id": "google-tasks-mcp",
+          "url": "https://github.com/jannikco/google-tasks-mcp"
+        }
+      ],
+      "tools": [
+        "list_task_lists",
+        "list_tasks",
+        "create_task"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/google-tasks-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/google-tasks-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "gorgias-workflow",
+      "title": "Gorgias authorized workflow",
+      "description": "Find existing customers and explicitly create one customer record with an email channel.",
+      "product": "pipmcp",
+      "providerId": "gorgias",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "gorgias",
+        "Gorgias",
+        "workflow",
+        "support",
+        "gorgias_list_customers",
+        "gorgias_create_customer"
+      ],
+      "repositories": [
+        {
+          "id": "gorgias-mcp",
+          "url": "https://github.com/jannikco/gorgias-mcp"
+        }
+      ],
+      "tools": [
+        "gorgias_list_customers",
+        "gorgias_create_customer"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/gorgias-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/gorgias-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "grafana-workflow",
+      "title": "Inspect a dashboard and record an approved release annotation",
+      "description": "Inspect a dashboard and record an approved release annotation. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "grafana",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "grafana",
+        "Grafana",
+        "workflow",
+        "developer",
+        "search_dashboards",
+        "get_dashboard",
+        "create_annotation"
+      ],
+      "repositories": [
+        {
+          "id": "grafana-mcp",
+          "url": "https://github.com/jannikco/grafana-mcp"
+        }
+      ],
+      "tools": [
+        "search_dashboards",
+        "get_dashboard",
+        "create_annotation"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/grafana-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/grafana-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "help-scout-workflow",
+      "title": "Help Scout authorized workflow",
+      "description": "Find active support conversations and inspect one selected conversation in detail.",
+      "product": "pipmcp",
+      "providerId": "help-scout",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "help-scout",
+        "Help Scout",
+        "workflow",
+        "developer",
+        "helpscout_list_conversations",
+        "helpscout_get_conversation"
+      ],
+      "repositories": [
+        {
+          "id": "help-scout-mcp",
+          "url": "https://github.com/jannikco/help-scout-mcp"
+        }
+      ],
+      "tools": [
+        "helpscout_list_conversations",
+        "helpscout_get_conversation"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/help-scout-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/help-scout-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "hugging-face-workflow",
+      "title": "Review reproducible model revisions",
+      "description": "Inspect model branches and tags, then read a selected revision’s commit history before pinning it in downstream inference tooling. Dataset references can be inspected separately.",
+      "product": "pipmcp",
+      "providerId": "hugging-face",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "hugging-face",
+        "Hugging Face",
+        "workflow",
+        "developer",
+        "list_model_refs",
+        "list_model_commits"
+      ],
+      "repositories": [
+        {
+          "id": "hugging-face-mcp",
+          "url": "https://github.com/jannikco/hugging-face-mcp"
+        }
+      ],
+      "tools": [
+        "list_model_refs",
+        "list_model_commits"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/hugging-face-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/hugging-face-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "instantly-workflow",
+      "title": "Instantly authorized workflow",
+      "description": "Inspect campaigns and explicitly create a new campaign with a reviewed schedule, without activating it.",
+      "product": "pipmcp",
+      "providerId": "instantly",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "instantly",
+        "Instantly",
+        "workflow",
+        "email",
+        "instantly_list_campaigns",
+        "instantly_create_campaign"
+      ],
+      "repositories": [
+        {
+          "id": "instantly-mcp",
+          "url": "https://github.com/jannikco/instantly-mcp"
+        }
+      ],
+      "tools": [
+        "instantly_list_campaigns",
+        "instantly_create_campaign"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/instantly-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/instantly-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "intercom-workflow",
+      "title": "intercom-workflow",
+      "description": "Find support contacts and add a new lead contact without sending an outbound message.",
+      "product": "pipmcp",
+      "providerId": "intercom",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "intercom",
+        "Intercom",
+        "workflow",
+        "support",
+        "intercom_list_contacts",
+        "intercom_get_contact",
+        "intercom_create_contact"
+      ],
+      "repositories": [
+        {
+          "id": "intercom-mcp",
+          "url": "https://github.com/jannikco/intercom-mcp"
+        }
+      ],
+      "tools": [
+        "intercom_list_contacts",
+        "intercom_get_contact",
+        "intercom_create_contact"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/intercom-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/intercom-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "jotform-workflow",
+      "title": "Jotform authorized workflow",
+      "description": "Find an authorized form and read a bounded page of its submitted responses.",
+      "product": "pipmcp",
+      "providerId": "jotform",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "jotform",
+        "Jotform",
+        "workflow",
+        "forms",
+        "jotform_list_forms",
+        "jotform_list_submissions"
+      ],
+      "repositories": [
+        {
+          "id": "jotform-mcp",
+          "url": "https://github.com/jannikco/jotform-mcp"
+        }
+      ],
+      "tools": [
+        "jotform_list_forms",
+        "jotform_list_submissions"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/jotform-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/jotform-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "kit-workflow",
+      "title": "Kit (ConvertKit) authorized workflow",
+      "description": "Find subscribers and explicitly create an inactive subscriber record without activating a subscription.",
+      "product": "pipmcp",
+      "providerId": "kit",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "kit",
+        "Kit (ConvertKit)",
+        "workflow",
+        "email",
+        "kit_list_subscribers",
+        "kit_create_inactive_subscriber"
+      ],
+      "repositories": [
+        {
+          "id": "kit-mcp",
+          "url": "https://github.com/jannikco/kit-mcp"
+        }
+      ],
+      "tools": [
+        "kit_list_subscribers",
+        "kit_create_inactive_subscriber"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/kit-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/kit-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "lemlist-workflow",
+      "title": "lemlist authorized workflow",
+      "description": "Review campaigns and explicitly create a campaign with automatic lead review disabled.",
+      "product": "pipmcp",
+      "providerId": "lemlist",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "lemlist",
+        "lemlist",
+        "workflow",
+        "marketing",
+        "lemlist_list_campaigns",
+        "lemlist_create_campaign"
+      ],
+      "repositories": [
+        {
+          "id": "lemlist-mcp",
+          "url": "https://github.com/jannikco/lemlist-mcp"
+        }
+      ],
+      "tools": [
+        "lemlist_list_campaigns",
+        "lemlist_create_campaign"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/lemlist-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/lemlist-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "mailchimp-workflow",
+      "title": "Mailchimp authorized workflow",
+      "description": "Inspect audiences and their members before explicitly requesting double opt-in for a consenting subscriber.",
+      "product": "pipmcp",
+      "providerId": "mailchimp",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "mailchimp",
+        "Mailchimp",
+        "workflow",
+        "developer",
+        "mailchimp_list_audiences",
+        "mailchimp_list_members",
+        "mailchimp_add_pending_member"
+      ],
+      "repositories": [
+        {
+          "id": "mailchimp-mcp",
+          "url": "https://github.com/jannikco/mailchimp-mcp"
+        }
+      ],
+      "tools": [
+        "mailchimp_list_audiences",
+        "mailchimp_list_members",
+        "mailchimp_add_pending_member"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/mailchimp-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/mailchimp-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "mailgun-workflow",
+      "title": "Mailgun authorized workflow",
+      "description": "Inspect configured sending domains and their verification details without sending messages.",
+      "product": "pipmcp",
+      "providerId": "mailgun",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "mailgun",
+        "Mailgun",
+        "workflow",
+        "developer",
+        "mailgun_list_domains",
+        "mailgun_get_domain"
+      ],
+      "repositories": [
+        {
+          "id": "mailgun-mcp",
+          "url": "https://github.com/jannikco/mailgun-mcp"
+        }
+      ],
+      "tools": [
+        "mailgun_list_domains",
+        "mailgun_get_domain"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/mailgun-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/mailgun-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "microsoft-onedrive-workflow",
+      "title": "Inspect OneDrive documents and create an approved project folder",
+      "description": "Inspect OneDrive documents and create an approved project folder. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "microsoft-onedrive",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "microsoft-onedrive",
+        "Microsoft OneDrive",
+        "workflow",
+        "developer",
+        "list_root_children",
+        "get_item",
+        "create_root_folder"
+      ],
+      "repositories": [
+        {
+          "id": "microsoft-onedrive-mcp",
+          "url": "https://github.com/jannikco/microsoft-onedrive-mcp"
+        }
+      ],
+      "tools": [
+        "list_root_children",
+        "get_item",
+        "create_root_folder"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/microsoft-onedrive-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/microsoft-onedrive-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "microsoft-outlook-workflow",
+      "title": "Inbox briefing",
+      "description": "Collect message subjects and mailbox folders to prepare a user-authorized inbox summary.",
+      "product": "pipmcp",
+      "providerId": "microsoft-outlook",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "microsoft-outlook",
+        "Microsoft Outlook",
+        "workflow",
+        "email",
+        "list_messages",
+        "list_mail_folders"
+      ],
+      "repositories": [
+        {
+          "id": "microsoft-outlook-mcp",
+          "url": "https://github.com/jannikco/microsoft-outlook-mcp"
+        }
+      ],
+      "tools": [
+        "list_messages",
+        "list_mail_folders"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/microsoft-outlook-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/microsoft-outlook-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "microsoft-teams-workflow",
+      "title": "Team channel briefing",
+      "description": "Find a team joined by your delegated account and inspect its channels before preparing a status report.",
+      "product": "pipmcp",
+      "providerId": "microsoft-teams",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "microsoft-teams",
+        "Microsoft Teams",
+        "workflow",
+        "communication",
+        "list_joined_teams",
+        "list_team_channels"
+      ],
+      "repositories": [
+        {
+          "id": "microsoft-teams-mcp",
+          "url": "https://github.com/jannikco/microsoft-teams-mcp"
+        }
+      ],
+      "tools": [
+        "list_joined_teams",
+        "list_team_channels"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/microsoft-teams-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/microsoft-teams-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "netlify-workflow",
+      "title": "Inspect site deployments then explicitly trigger a reviewed Git build",
+      "description": "Inspect site deployments then explicitly trigger a reviewed Git build. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "netlify",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "netlify",
+        "Netlify",
+        "workflow",
+        "developer",
+        "list_sites",
+        "list_deploys",
+        "create_build"
+      ],
+      "repositories": [
+        {
+          "id": "netlify-mcp",
+          "url": "https://github.com/jannikco/netlify-mcp"
+        }
+      ],
+      "tools": [
+        "list_sites",
+        "list_deploys",
+        "create_build"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/netlify-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/netlify-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "new-relic-workflow",
+      "title": "Inspect accessible accounts then add approved entity tags",
+      "description": "Inspect accessible accounts then add approved entity tags. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "new-relic",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "new-relic",
+        "New Relic",
+        "workflow",
+        "developer",
+        "get_current_user",
+        "list_accounts",
+        "add_entity_tags"
+      ],
+      "repositories": [
+        {
+          "id": "new-relic-mcp",
+          "url": "https://github.com/jannikco/new-relic-mcp"
+        }
+      ],
+      "tools": [
+        "get_current_user",
+        "list_accounts",
+        "add_entity_tags"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/new-relic-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/new-relic-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "paypal-workflow",
+      "title": "paypal-workflow",
+      "description": "Inspect sandbox invoices and prepare a draft invoice for review without sending it.",
+      "product": "pipmcp",
+      "providerId": "paypal",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "paypal",
+        "PayPal",
+        "workflow",
+        "payments",
+        "paypal_list_invoices",
+        "paypal_get_invoice",
+        "paypal_create_draft_invoice"
+      ],
+      "repositories": [
+        {
+          "id": "paypal-mcp",
+          "url": "https://github.com/jannikco/paypal-mcp"
+        }
+      ],
+      "tools": [
+        "paypal_list_invoices",
+        "paypal_get_invoice",
+        "paypal_create_draft_invoice"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/paypal-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/paypal-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "pinecone-workflow",
+      "title": "Inspect an existing vector index",
+      "description": "List available indexes and inspect a selected index’s host and readiness before connecting a data-plane application. No index creation or destructive operation is exposed.",
+      "product": "pipmcp",
+      "providerId": "pinecone",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "pinecone",
+        "Pinecone",
+        "workflow",
+        "data",
+        "list_indexes",
+        "describe_index"
+      ],
+      "repositories": [
+        {
+          "id": "pinecone-mcp",
+          "url": "https://github.com/jannikco/pinecone-mcp"
+        }
+      ],
+      "tools": [
+        "list_indexes",
+        "describe_index"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/pinecone-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/pinecone-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "postmark-workflow",
+      "title": "Postmark authorized workflow",
+      "description": "Inspect outbound delivery statistics before explicitly submitting one transactional email.",
+      "product": "pipmcp",
+      "providerId": "postmark",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "postmark",
+        "Postmark",
+        "workflow",
+        "email",
+        "postmark_get_delivery_stats",
+        "postmark_send_email"
+      ],
+      "repositories": [
+        {
+          "id": "postmark-mcp",
+          "url": "https://github.com/jannikco/postmark-mcp"
+        }
+      ],
+      "tools": [
+        "postmark_get_delivery_stats",
+        "postmark_send_email"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/postmark-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/postmark-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "qdrant-workflow",
+      "title": "Inspect and update vector records",
+      "description": "List collections, query a supplied vector, and only after reviewing point IDs approve an upsert into the same collection. Re-query to inspect provider results; dimensions and collection access remain provider-enforced.",
+      "product": "pipmcp",
+      "providerId": "qdrant",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "qdrant",
+        "Qdrant Cloud",
+        "workflow",
+        "developer",
+        "list_collections",
+        "query_points",
+        "upsert_points"
+      ],
+      "repositories": [
+        {
+          "id": "qdrant-mcp",
+          "url": "https://github.com/jannikco/qdrant-mcp"
+        }
+      ],
+      "tools": [
+        "list_collections",
+        "query_points",
+        "upsert_points"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/qdrant-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/qdrant-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "render-workflow",
+      "title": "Review deployment history then approve a service deployment",
+      "description": "Review deployment history then approve a service deployment. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "render",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "render",
+        "Render",
+        "workflow",
+        "developer",
+        "list_services",
+        "list_deploys",
+        "create_deploy"
+      ],
+      "repositories": [
+        {
+          "id": "render-mcp",
+          "url": "https://github.com/jannikco/render-mcp"
+        }
+      ],
+      "tools": [
+        "list_services",
+        "list_deploys",
+        "create_deploy"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/render-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/render-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "replicate-workflow",
+      "title": "Approve and inspect a prediction",
+      "description": "Inspect the chosen model schema, approve prediction creation, then use the returned prediction ID to read status. Do not infer model success from the request transport result.",
+      "product": "pipmcp",
+      "providerId": "replicate",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "replicate",
+        "Replicate",
+        "workflow",
+        "developer",
+        "get_model",
+        "create_prediction",
+        "get_prediction"
+      ],
+      "repositories": [
+        {
+          "id": "replicate-mcp",
+          "url": "https://github.com/jannikco/replicate-mcp"
+        }
+      ],
+      "tools": [
+        "get_model",
+        "create_prediction",
+        "get_prediction"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/replicate-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/replicate-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "resend-workflow",
+      "title": "Resend authorized workflow",
+      "description": "Inspect verified sending domains and explicitly submit a transactional email.",
+      "product": "pipmcp",
+      "providerId": "resend",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "resend",
+        "Resend",
+        "workflow",
+        "email",
+        "resend_list_domains",
+        "resend_send_email"
+      ],
+      "repositories": [
+        {
+          "id": "resend-mcp",
+          "url": "https://github.com/jannikco/resend-mcp"
+        }
+      ],
+      "tools": [
+        "resend_list_domains",
+        "resend_send_email"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/resend-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/resend-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "sendgrid-workflow",
+      "title": "SendGrid authorized workflow",
+      "description": "Inspect existing transactional templates and explicitly create a new dynamic template shell without sending email.",
+      "product": "pipmcp",
+      "providerId": "sendgrid",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "sendgrid",
+        "SendGrid",
+        "workflow",
+        "developer",
+        "sendgrid_list_templates",
+        "sendgrid_create_template"
+      ],
+      "repositories": [
+        {
+          "id": "sendgrid-mcp",
+          "url": "https://github.com/jannikco/sendgrid-mcp"
+        }
+      ],
+      "tools": [
+        "sendgrid_list_templates",
+        "sendgrid_create_template"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/sendgrid-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/sendgrid-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "sentry-workflow",
+      "title": "Error monitoring inventory",
+      "description": "Find your organization and projects before selecting error monitoring ownership.",
+      "product": "pipmcp",
+      "providerId": "sentry",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "sentry",
+        "Sentry",
+        "workflow",
+        "developer",
+        "list_organizations",
+        "list_organization_projects"
+      ],
+      "repositories": [
+        {
+          "id": "sentry-mcp",
+          "url": "https://github.com/jannikco/sentry-mcp"
+        }
+      ],
+      "tools": [
+        "list_organizations",
+        "list_organization_projects"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/sentry-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/sentry-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "shopify-workflow",
+      "title": "Shopify authorized workflow",
+      "description": "Inspect store products, then explicitly approve a title change to one chosen product.",
+      "product": "pipmcp",
+      "providerId": "shopify",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "shopify",
+        "Shopify",
+        "workflow",
+        "developer",
+        "shopify_list_products",
+        "shopify_update_product_title"
+      ],
+      "repositories": [
+        {
+          "id": "shopify-mcp",
+          "url": "https://github.com/jannikco/shopify-mcp"
+        }
+      ],
+      "tools": [
+        "shopify_list_products",
+        "shopify_update_product_title"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/shopify-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/shopify-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "smartlead-workflow",
+      "title": "Smartlead authorized workflow",
+      "description": "Inspect campaigns and explicitly create an empty campaign for manual configuration.",
+      "product": "pipmcp",
+      "providerId": "smartlead",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "smartlead",
+        "Smartlead",
+        "workflow",
+        "developer",
+        "smartlead_list_campaigns",
+        "smartlead_create_campaign"
+      ],
+      "repositories": [
+        {
+          "id": "smartlead-mcp",
+          "url": "https://github.com/jannikco/smartlead-mcp"
+        }
+      ],
+      "tools": [
+        "smartlead_list_campaigns",
+        "smartlead_create_campaign"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/smartlead-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/smartlead-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "supabase-workflow",
+      "title": "Supabase estate inventory",
+      "description": "Compare accessible organizations and projects before choosing a deployment target. This is the Management API, not database table access.",
+      "product": "pipmcp",
+      "providerId": "supabase",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "supabase",
+        "Supabase",
+        "workflow",
+        "developer",
+        "list_projects",
+        "list_organizations"
+      ],
+      "repositories": [
+        {
+          "id": "supabase-mcp",
+          "url": "https://github.com/jannikco/supabase-mcp"
+        }
+      ],
+      "tools": [
+        "list_projects",
+        "list_organizations"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/supabase-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/supabase-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "tavily-workflow",
+      "title": "Research and inspect source pages",
+      "description": "Search for relevant documentation and pass selected result URLs to extraction. Review both extracted pages and per-URL failures before citing content. Provider credits apply.",
+      "product": "pipmcp",
+      "providerId": "tavily",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "tavily",
+        "Tavily",
+        "workflow",
+        "data",
+        "search_web",
+        "extract_urls"
+      ],
+      "repositories": [
+        {
+          "id": "tavily-mcp",
+          "url": "https://github.com/jannikco/tavily-mcp"
+        }
+      ],
+      "tools": [
+        "search_web",
+        "extract_urls"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/tavily-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/tavily-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "todoist-workflow",
+      "title": "Triage project tasks and capture an approved follow-up",
+      "description": "Triage project tasks and capture an approved follow-up. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "todoist",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "todoist",
+        "Todoist",
+        "workflow",
+        "productivity",
+        "list_projects",
+        "list_tasks",
+        "create_task"
+      ],
+      "repositories": [
+        {
+          "id": "todoist-mcp",
+          "url": "https://github.com/jannikco/todoist-mcp"
+        }
+      ],
+      "tools": [
+        "list_projects",
+        "list_tasks",
+        "create_task"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/todoist-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/todoist-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "trello-workflow",
+      "title": "Board portfolio briefing",
+      "description": "Identify the current member and read open boards for a portfolio status summary.",
+      "product": "pipmcp",
+      "providerId": "trello",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "trello",
+        "Trello",
+        "workflow",
+        "project-management",
+        "get_current_member",
+        "list_member_boards"
+      ],
+      "repositories": [
+        {
+          "id": "trello-mcp",
+          "url": "https://github.com/jannikco/trello-mcp"
+        }
+      ],
+      "tools": [
+        "get_current_member",
+        "list_member_boards"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/trello-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/trello-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "typeform-workflow",
+      "title": "Typeform authorized workflow",
+      "description": "List forms and explicitly create a new empty form for later review.",
+      "product": "pipmcp",
+      "providerId": "typeform",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "typeform",
+        "Typeform",
+        "workflow",
+        "developer",
+        "typeform_list_forms",
+        "typeform_create_form"
+      ],
+      "repositories": [
+        {
+          "id": "typeform-mcp",
+          "url": "https://github.com/jannikco/typeform-mcp"
+        }
+      ],
+      "tools": [
+        "typeform_list_forms",
+        "typeform_create_form"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/typeform-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/typeform-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "uptimerobot-workflow",
+      "title": "Review monitor health then create an approved HTTP monitor",
+      "description": "Review monitor health then create an approved HTTP monitor. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "uptimerobot",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "uptimerobot",
+        "UptimeRobot",
+        "workflow",
+        "developer",
+        "list_monitors",
+        "get_monitor",
+        "create_http_monitor"
+      ],
+      "repositories": [
+        {
+          "id": "uptimerobot-mcp",
+          "url": "https://github.com/jannikco/uptimerobot-mcp"
+        }
+      ],
+      "tools": [
+        "list_monitors",
+        "get_monitor",
+        "create_http_monitor"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/uptimerobot-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/uptimerobot-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "vercel-workflow",
+      "title": "Review deployments and create an approved Vercel project",
+      "description": "Review deployments and create an approved Vercel project. Read provider data first, then explicitly approve the selected change with operator write opt-in and a unique per-call approval key.",
+      "product": "pipmcp",
+      "providerId": "vercel",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "vercel",
+        "Vercel",
+        "workflow",
+        "developer",
+        "list_projects",
+        "list_deployments",
+        "create_project"
+      ],
+      "repositories": [
+        {
+          "id": "vercel-mcp",
+          "url": "https://github.com/jannikco/vercel-mcp"
+        }
+      ],
+      "tools": [
+        "list_projects",
+        "list_deployments",
+        "create_project"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/vercel-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/vercel-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "woocommerce-workflow",
+      "title": "woocommerce-workflow",
+      "description": "Read your store customer list and create a customer account through your own WooCommerce API.",
+      "product": "pipmcp",
+      "providerId": "woocommerce",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "woocommerce",
+        "WooCommerce",
+        "workflow",
+        "ecommerce",
+        "woocommerce_list_customers",
+        "woocommerce_get_customer",
+        "woocommerce_create_customer"
+      ],
+      "repositories": [
+        {
+          "id": "woocommerce-mcp",
+          "url": "https://github.com/jannikco/woocommerce-mcp"
+        }
+      ],
+      "tools": [
+        "woocommerce_list_customers",
+        "woocommerce_get_customer",
+        "woocommerce_create_customer"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/woocommerce-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/woocommerce-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "xero-workflow",
+      "title": "xero-workflow",
+      "description": "Review contacts in one authorized Xero organization and add contacts after approval.",
+      "product": "pipmcp",
+      "providerId": "xero",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "xero",
+        "Xero",
+        "workflow",
+        "accounting",
+        "xero_list_contacts",
+        "xero_get_contact",
+        "xero_create_contacts"
+      ],
+      "repositories": [
+        {
+          "id": "xero-mcp",
+          "url": "https://github.com/jannikco/xero-mcp"
+        }
+      ],
+      "tools": [
+        "xero_list_contacts",
+        "xero_get_contact",
+        "xero_create_contacts"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/xero-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/xero-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "zendesk-workflow",
+      "title": "zendesk-workflow",
+      "description": "Review support tickets and create a new ticket with an initial customer-service comment.",
+      "product": "pipmcp",
+      "providerId": "zendesk",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "zendesk",
+        "Zendesk",
+        "workflow",
+        "support",
+        "zendesk_list_tickets",
+        "zendesk_get_ticket",
+        "zendesk_create_ticket"
+      ],
+      "repositories": [
+        {
+          "id": "zendesk-mcp",
+          "url": "https://github.com/jannikco/zendesk-mcp"
+        }
+      ],
+      "tools": [
+        "zendesk_list_tickets",
+        "zendesk_get_ticket",
+        "zendesk_create_ticket"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/zendesk-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/zendesk-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    },
+    {
+      "id": "zoho-crm-workflow",
+      "title": "Zoho CRM authorized workflow",
+      "description": "Review lead records and explicitly create an authorized new lead in a US-region CRM.",
+      "product": "pipmcp",
+      "providerId": "zoho-crm",
+      "kind": "provider-workflow-definition",
+      "keywords": [
+        "zoho-crm",
+        "Zoho CRM",
+        "workflow",
+        "developer",
+        "zoho_list_leads",
+        "zoho_create_lead"
+      ],
+      "repositories": [
+        {
+          "id": "zoho-crm-mcp",
+          "url": "https://github.com/jannikco/zoho-crm-mcp"
+        }
+      ],
+      "tools": [
+        "zoho_list_leads",
+        "zoho_create_lead"
+      ],
+      "operations": [],
+      "access": [
+        "Provider account and permissions described on the integration page"
+      ],
+      "approval": "A composed workflow definition is not an independently executed provider outcome. Review all writes and current repository behavior.",
+      "detailPath": "tasks/zoho-crm-workflow/",
+      "canonicalUrl": "https://jannikco.github.io/pipmcp-connectors/tasks/zoho-crm-workflow/",
+      "evidence": {
+        "definition": "Source-documented",
+        "implementation": "Contract-tested client code; version-specific release required",
+        "providerExecution": "Not established by task discovery"
+      },
+      "releaseGuidance": "Use the repository release matching the documented SDK/bridge version; existing repository publication does not prove every newer asset is released."
+    }
+  ]
+}

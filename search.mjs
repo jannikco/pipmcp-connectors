@@ -14,7 +14,7 @@ export function searchCatalog(entries, query = '', {auth, kind, product, categor
       const highest=operationLive||levels.includes('Live')?'Live':levels.includes('Tested')?'Tested':'Documented';
       if(highest!==status)return false;
     }
-    const text = [entry.id,entry.name,entry.description,entry.appSlug,entry.category,entry.artifactType,entry.authentication?.type,...(entry.authentication?.requiredCredentialFields??[]),...(entry.authentication?.requiredHeaderNames??[]),entry.providerDocs,entry.authentication?.helpUrl,...(entry.tools??[]).flatMap(tool=>[tool.name,tool.description,tool.method,tool.path])].filter(Boolean).join(' ').toLowerCase();
+    const text = [entry.id,entry.name,entry.description,entry.appSlug,entry.category,entry.artifactType,entry.authentication?.type,...(entry.authentication?.requiredCredentialFields??[]),...(entry.authentication?.requiredHeaderNames??[]),entry.providerDocs,entry.authentication?.helpUrl,...(entry.taskSearchTerms??[]),...(entry.tools??[]).flatMap(tool=>[tool.name,tool.description,tool.method,tool.path])].filter(Boolean).join(' ').toLowerCase();
     return words.every(word=>text.includes(word));
   });
 }
