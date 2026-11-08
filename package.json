@@ -1,0 +1,14 @@
+{
+  "name": "pipmcp-connectors",
+  "version": "0.1.0",
+  "description": "Search MCP connector setup projects, API clients, authentication requirements and provider documentation.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node cli.mjs search",
+    "test": "node --test tests/*.test.mjs"
+  }
+}
