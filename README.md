@@ -1,3 +1,69 @@
+# Find a useful starting point for the job you need done
+
+**PipMCP project directory**
+
+You know the business problem or the app you use, but do not want to choose a technical integration format first.
+
+**Made for:** People choosing an assistant workflow for their business
+
+No account needed to browse. Choose a project when you are ready to connect an app.
+
+## Ask your AI to set this up
+
+Paste this into a coding assistant that can open project files and run commands, such as Codex, Claude Code or Grok Build. You do not need to understand the code first.
+
+```text
+Help me find the right project here: https://github.com/jannikco/pipmcp-connectors
+
+I'm not a programmer. My goal is: Find a useful starting point for the job you need done.
+
+Ask what I want to accomplish and which apps I already use. Read the directory and suggest
+a suitable project, explaining the result I could get in plain English. Tell me which
+account or connection I need, then open that project's instructions and guide me through
+the first small step. Show me any proposed changes before making them.
+```
+
+## Three useful things to ask for
+
+```text
+Help me find a project for the business task I describe. Explain the difference between a
+working client and a setup guide.
+```
+
+```text
+Compare suitable entries using their actual supported actions and account requirements. Do
+not assume that every listed app is already connected.
+```
+
+```text
+Choose one starting point and give me a short setup checklist, including the key and
+review steps required before a real action.
+```
+
+## Your path to a real result
+
+```mermaid
+flowchart LR
+  A["Describe your goal"] --> B["Choose a project"] --> C["Read its setup guide"] --> D["Try your selected task"]
+```
+
+1. [Open the task directory](https://jannikco.github.io/pipmcp-connectors/start/).
+2. Choose the outcome and apps you need.
+3. Give the selected project's link to your AI assistant.
+
+**What to expect:** Browse task guides, app pages and published project links. A directory entry is a starting point, not proof that an app is connected. Real work happens in the chosen product and requires its account, key and permissions.
+
+The directory helps you choose a project; it does not run connected-app actions.
+
+## Keep going
+
+- [Connect an API you control](https://github.com/jannikco/openapi-to-mcp)
+- [Try the GitHub project](https://github.com/jannikco/github-mcp)
+
+<details>
+<summary>Technical reference: installation commands, exact capabilities and troubleshooting</summary>
+
+<!-- people-first:technical:start -->
 # MCP connectors, API SDKs and AI-agent workflows
 
 **Find a useful GitHub project. Connect your account. Build the workflow you need.**
@@ -50,3 +116,7 @@ Open http://localhost:8080/. Machine discovery is available in [tasks.json](task
 [All integrations](https://jannikco.github.io/pipmcp-connectors/) · [Task library](https://jannikco.github.io/pipmcp-connectors/tasks/) · [Workflow guides](https://jannikco.github.io/pipmcp-connectors/workflows/) · [Connection guides](https://jannikco.github.io/pipmcp-connectors/guides/)
 
 MIT for the directory/client code. Provider names do not imply endorsement. Keep credentials and customer records out of public issues.
+
+<!-- people-first:technical:end -->
+
+</details>
